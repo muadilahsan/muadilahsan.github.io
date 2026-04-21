@@ -109,23 +109,8 @@ h1 {
 }
 
 .profile-panel h1,
-.profile-panel .title,
-.profile-panel .bio,
-.profile-panel .actions,
-.profile-panel .note-block {
+.profile-panel .actions {
   width: 85%;
-}
-
-.title {
-  margin: 0;
-  color: var(--body-copy);
-  font-weight: 500;
-}
-
-.bio {
-  margin: 0.95rem 0;
-  line-height: 1.55;
-  color: var(--body-copy);
 }
 
 .actions {
@@ -161,27 +146,6 @@ h1 {
   border-color: rgba(23, 34, 42, 0.2);
 }
 
-.note-block {
-  margin-top: 1.3rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-}
-
-.note-label {
-  margin: 0 0 0.3rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.note-copy {
-  margin: 0;
-  line-height: 1.5;
-  color: var(--body-copy);
-}
-
 .research-panel {
   padding: 1.4rem;
 }
@@ -197,6 +161,14 @@ h1 {
 .section-header p {
   margin: 0.25rem 0 1rem;
   color: var(--body-copy);
+}
+
+.intro-copy {
+  margin: 0 0 0.75rem;
+  max-width: 62ch;
+  line-height: 1.6;
+  color: var(--body-copy);
+  font-size: 1rem;
 }
 
 .papers-list {
@@ -306,10 +278,7 @@ h1 {
   }
 
   .profile-panel h1,
-  .profile-panel .title,
-  .profile-panel .bio,
   .profile-panel .actions,
-  .profile-panel .note-block,
   .profile-photo {
     width: 100%;
   }
