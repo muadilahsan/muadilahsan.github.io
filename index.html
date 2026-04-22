@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adil Ahsan</title>
+    <meta
+      name="description"
+      content="A minimalist personal website for research, writing, and selected work."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape shape-1" aria-hidden="true"></div>
+    <div class="bg-shape shape-2" aria-hidden="true"></div>
+
+    <main class="layout">
+      <aside class="profile-panel">
+        <img
+          class="profile-photo"
+          src="adilphoto.jpeg"
+          alt="Portrait of Adil Ahsan"
+        />
+
+        <h1>Adil Ahsan</h1>
+
+        <div class="actions">
+          <a class="btn" href="#">CV</a>
+          <a class="btn" href="mailto:you@example.com">Email</a>
+        </div>
+
+        <p class="bio">
+          Hello! I'm a 5th year PhD candidate in Public Policy (Economics
+          track) at Harvard University. I work on topics in Development
+          Economics and Political Economy.
+        </p>
+        <p class="bio">
+          I completed my undergraduate studies from Dartmouth College and worked
+          as a pre-doc at Wharton before beginning my PhD.
+        </p>
+      </aside>
+
+      <section class="research-panel">
+        <header class="section-header">
+          <h2>Working papers</h2>
+          <p>
+            Selected projects, field experiments, and early-stage writing.
+          </p>
+        </header>
+
+        <div class="papers-list">
+          <article class="paper-item">
+            <h3>Trust, Incentives, and Coordination in Local Service Delivery</h3>
+            <p class="paper-meta">Job market paper</p>
+            <div class="paper-actions">
+              <button
+                class="abstract-btn"
+                type="button"
+                data-target="abs-1"
+                aria-expanded="false"
+              >
+                Abstract
+              </button>
+              <a href="#">Draft</a>
+              <a href="#">Slides</a>
+            </div>
+            <p id="abs-1" class="abstract-text" hidden>
+              This project studies how small administrative frictions reshape
+              performance when frontline workers rely on trust, repeated
+              interaction, and informal coordination to deliver public
+              services. Combining administrative records with field evidence, I
+              show that modest changes in reporting and monitoring can improve
+              reliability without suppressing local discretion.
+            </p>
+          </article>
+
+          <article class="paper-item">
+            <h3>Networks, Hiring, and Informal Gatekeeping</h3>
+            <p class="paper-meta">with A. Collaborator</p>
+            <div class="paper-actions">
+              <button
+                class="abstract-btn"
+                type="button"
+                data-target="abs-2"
+                aria-expanded="false"
+              >
+                Abstract
+              </button>
+              <a href="#">Draft</a>
+            </div>
+            <p id="abs-2" class="abstract-text" hidden>
+              We examine how referral-based hiring can expand information while
+              also concentrating opportunity within already connected groups.
+              Using matched employer-worker data and a lightweight field
+              intervention, the paper traces when networks reduce search costs
+              and when they reinforce exclusion.
+            </p>
+          </article>
+
+          <article class="paper-item">
+            <h3>Credit, Reputation, and Repeat Exchange in Urban Markets</h3>
+            <p class="paper-meta">with B. Collaborator and C. Collaborator</p>
+            <div class="paper-actions">
+              <button
+                class="abstract-btn"
+                type="button"
+                data-target="abs-3"
+                aria-expanded="false"
+              >
+                Abstract
+              </button>
+              <a href="#">Draft</a>
+              <a href="#">Data</a>
+            </div>
+            <p id="abs-3" class="abstract-text" hidden>
+              This paper looks at deferred payment arrangements among small
+              businesses and regular customers. We show how everyday credit
+              operates as both a financial tool and a social signal, shaping who
+              returns, who repays, and who gets offered flexibility in the first
+              place.
+            </p>
+          </article>
+        </div>
+
+        <div class="wip-block">
+          <h3>Select work in progress</h3>
+
+          <div class="papers-list">
+            <article class="paper-item compact">
+              <h3>Learning, Sorting, and Peer Effects in Targeted Programs</h3>
+              <p class="paper-meta">with D. Collaborator</p>
+            </article>
+
+            <article class="paper-item compact">
+              <h3>Monitoring Public Distribution with High-Frequency Signals</h3>
+              <p class="paper-meta">with E. Collaborator, F. Collaborator</p>
+            </article>
+
+            <article class="paper-item compact">
+              <h3>Small Interfaces, Large Decisions</h3>
+              <p class="paper-meta">Essays on design, policy, and legitimacy</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="wip-block">
+          <h3>Personal projects</h3>
+
+          <div class="papers-list">
+            <article class="paper-item compact">
+              <h3>The Spiritual Landscape of Pakistan</h3>
+              <p class="paper-meta">with Rauf Nawaz</p>
+              <p class="abstract-text">
+                Map of Sufi shrines, Hindu temples, and Sikh gurdwaras in
+                Pakistan and their oral and written histories.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const abstractButtons = document.querySelectorAll(".abstract-btn");
+
+      abstractButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetId = button.getAttribute("data-target");
+          const abstract = document.getElementById(targetId);
+          const isOpen = button.getAttribute("aria-expanded") === "true";
+
+          button.setAttribute("aria-expanded", String(!isOpen));
+
+          if (abstract) {
+            abstract.hidden = isOpen;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
