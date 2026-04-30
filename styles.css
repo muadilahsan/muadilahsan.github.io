@@ -93,10 +93,10 @@ a {
   width: 100%;
   display: block;
   margin: 0;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   border-radius: 18px;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 18%;
   border: 1px solid var(--line);
   box-shadow: 0 14px 26px rgba(20, 30, 50, 0.18);
 }
