@@ -6,7 +6,7 @@
     <title>Adil Ahsan</title>
     <meta
       name="description"
-      content="A minimalist personal website for research, writing, and selected work."
+      content="Adil Ahsan's research and personal projects."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -29,170 +29,238 @@
           <a class="btn" href="mailto:you@example.com">Email</a>
         </div>
 
-        <p class="bio">
-          Hello! I'm a 5th year PhD candidate in Public Policy (Economics
-          track) at Harvard University. 
-        </p>
-        <p class="bio">
-          I work on topics in Development Economics and Political Economy.
-        </p>
-        <p class="bio">
-          I completed my undergraduate studies from Dartmouth College and worked
-          as a pre-doc at Wharton before beginning my PhD.
+        <p class="sidebar-note">
+          PhD candidate in Public Policy at Harvard University working on
+          development economics, political economy, and religion.
         </p>
       </aside>
 
-      <section class="research-panel">
-        <header class="section-header">
-          <h2>Working papers</h2>
-          <p>
-        </header>
+      <section class="content-panel">
+        <nav class="tab-nav" aria-label="Site sections">
+          <button class="tab-link is-active" type="button" data-tab="about">
+            About me
+          </button>
+          <button class="tab-link" type="button" data-tab="research">
+            Research
+          </button>
+          <button class="tab-link" type="button" data-tab="projects">
+            Personal projects
+          </button>
+        </nav>
 
-        <div class="papers-list">
-          <article class="paper-item">
-            <h3>From the Pulpit to the People: How Sermons Shape Beliefs and Behavior</h3>
-            <p class="paper-meta">Job market paper</p>
-            <div class="paper-actions">
-              <button
-                class="abstract-btn"
-                type="button"
-                data-target="abs-1"
-                aria-expanded="false"
-              >
-                Abstract
-              </button>
-              <a href="#">Draft</a>
-              <a href="#">Slides</a>
-              <a href="#">Preregistration</a>
-            </div>
-            <p id="abs-1" class="abstract-text" hidden>
-            I explore the role of religious institutions in belief formation by experimentally 
-              varying Friday sermon content in 309 mosques in Punjab, Pakistan. Working with the Punjab 
-              Auqaf Department that administers state religious properties, I randomize sermon content across 
-              the following domains: 1) topic (control, women’s, or neighbors’ rights), 2) framing 
-              (fully religious or partially secular), 3) information sharing (plea to share content with 
-              wives or no plea). I find sizable impacts of women's rights sermons (0.23 SD) and neighbors’ 
-              rights sermons (0.20 SD) on men's beliefs and behavior as measured through lab-in-field games, 
-              field behavioral measures, and survey responses 2-4 weeks after treatments. I find suggestive evidence 
-              that effects extend downstream: wives of husbands who received sermons on women's rights report 
-              more prosocial beliefs and improved well-being. Secular framing diminishes effects for women’s rights 
-              sermons but increases them for sermons on neighbors’ rights, consistent with a simple Bayesian framework 
-              modified to allow religious priors to gate secular persuasion. Finally, I document evidence of 
-              demand-side backlash to women’s rights sermons as reflected in lower attendance numbers, as well as 
-              supply-side persistence in prosociality of sermon content. 
+        <section class="tab-panel is-active" id="about">
+          <header class="section-header">
+            <p class="eyebrow">About</p>
+            <h2>Researching belief, institutions, and public life</h2>
+          </header>
+
+          <div class="prose-block">
+            <p>
+              Hello! I'm a 5th year PhD candidate in Public Policy (Economics
+              track) at Harvard University.
             </p>
-          </article>
-
-
-        <div class="wip-block">
-          <h3>Select work in progress</h3>
-          
-
-          <div class="papers-list">
-
-               <article class="paper-item">
-            <h3>Doctor's Orders vs Divine Wisdom</h3>
-            <div class="paper-actions">
-              <button
-                class="abstract-btn"
-                type="button"
-                data-target="abs-2"
-                aria-expanded="false"
-              >
-                Abstract
-              </button>
-              <a href="#">Slides</a>
-            </div>
-            <p id="abs-2" class="abstract-text" hidden>
-              Low trust in secular state institutions can limit the effectiveness of informational interventions 
-              among religious populations. Recent work has suggested the potential for religious leaders to be utilized 
-              for information dissemination, but research directly comparing the efficacy of religious with secular 
-              leaders is lacking. Moreover, what, if any, are the unintended consequences of utilizing religious leaders 
-              as frontline agents tasked with achieving state goals? 
-              In this project, I explore the educational role of local leaders and compare the ability of local 
-              religious and secular leaders to encourage positive health behaviors in the context of a state-sponsored 
-              handwashing campaign in Punjab, Pakistan. In collaboration with the Pakistan Ministry of Health, I 
-              randomize Pakistani couples to meetings with either their local health worker or religious leader (imam) and 
-              then evaluate changes in hand hygiene and health beliefs. Through lab-in-field games, 
-              I explore the micro-foundations for separation of Church and State by evaluating whether reliance 
-              on religious leaders for information dissemination makes them the preferred choice for information in the future, 
-              even on secular topics. In doing so, this work sheds light on the benefits and pitfalls of using religious 
-              leaders to achieve policy goals through state-sponsored information campaigns.
+            <p>
+              My work sits at the intersection of development economics and
+              political economy, with a particular interest in how religious and
+              social institutions shape beliefs, norms, and behavior.
             </p>
-          </article>
-
-                           <article class="paper-item">
-            <h3>The Market for Religious Content: Evidence from Friday Sermons in Pakistan</h3>
-            <div class="paper-actions">
-              <button
-                class="abstract-btn"
-                type="button"
-                data-target="abs-3"
-                aria-expanded="false"
-              >
-                Abstract
-              </button>
-              <a href="#">Slides</a>
-            </div>
-            <p id="abs-3" class="abstract-text" hidden>
-            What drives religious content? In this project, I explore this question from both the demand and supply side 
-            in the context of mosques in Punjab, Pakistan. On the demand side, I provide congregants with "content information" 
-            (i.e. sermon content of nearby mosques) or "mosque information" (i.e. amenities and congregation characteristics of nearby 
-            mosques) and evaluate impacts on mosque choice. On the supply side, I provide religious leaders with "market information" 
-            (i.e. congregants' preferences and sermon content of nearby mosques) or "top-down information" (beliefs of senior religious 
-            leaders) and look at endogenous changes to sermon content. Results will have implications for policymakers seeking to understand 
-            the drivers of local hate speech and polarization and ways in which increased information can reduce the influence of controversial 
-            leaders.
+            <p>
+              I completed my undergraduate studies at Dartmouth College and
+              worked as a pre-doc at Wharton before beginning my PhD.
             </p>
-          </article>
-
-                                       <article class="paper-item">
-            <h3>The Value of Subordinates: Organizational Hierarchy and Mid-Level Career Progression</h3>
-              <p class="paper-meta">with Famy Xia</p>
-            <div class="paper-actions">
-              <button
-                class="abstract-btn"
-                type="button"
-                data-target="abs-4"
-                aria-expanded="false"
-              >
-                Abstract
-              </button>
-              <a href="#">Slides</a>
-            </div>
-            <p id="abs-4" class="abstract-text" hidden>
-
-            </p>
-          </article>
-            
-            <article class="paper-item compact">
-              <h3>Mapping out Property Rights and Informality in Indonesia</h3>
-              <p class="paper-meta">with Maisy Wong and Nina Harari</p>
-            </article>
-
-
           </div>
-        </div>
 
-        <div class="wip-block">
-          <h3>Personal projects</h3>
-
-          <div class="papers-list">
-            <article class="paper-item compact">
-              <h3>The Spiritual Landscape of Pakistan (in progress)</h3>
-              <p class="paper-meta">with Rauf Nawaz</p>
-              <p class="abstract-text">
-                Map and histories of Sufi shrines, Hindu temples, and Sikh gurdwaras in
-                Pakistan.
+          <div class="about-grid">
+            <article class="info-card">
+              <p class="card-label">Current interests</p>
+              <p>
+                Religion and persuasion, institutional trust, state capacity,
+                and behavior change.
+              </p>
+            </article>
+            <article class="info-card">
+              <p class="card-label">Methods</p>
+              <p>
+                Field experiments, administrative data, survey design, and
+                lab-in-the-field measurement.
               </p>
             </article>
           </div>
-        </div>
+        </section>
+
+        <section class="tab-panel" id="research" hidden>
+          <header class="section-header">
+            <p class="eyebrow">Research</p>
+            <h2>Working papers and projects in progress</h2>
+            <p class="section-copy">
+              Selected research in development economics, political economy, and
+              the economics of religion.
+            </p>
+          </header>
+
+          <div class="papers-list">
+            <article class="paper-item">
+              <h3>From the Pulpit to the People: How Sermons Shape Beliefs and Behavior</h3>
+              <p class="paper-meta">Job market paper</p>
+              <div class="paper-actions">
+                <button
+                  class="abstract-btn"
+                  type="button"
+                  data-target="abs-1"
+                  aria-expanded="false"
+                >
+                  Abstract
+                </button>
+                <a href="#">Draft</a>
+                <a href="#">Slides</a>
+                <a href="#">Preregistration</a>
+              </div>
+              <p id="abs-1" class="abstract-text" hidden>
+                I explore the role of religious institutions in belief formation
+                by experimentally varying Friday sermon content in 309 mosques
+                in Punjab, Pakistan. Working with the Punjab Auqaf Department
+                that administers state religious properties, I randomize sermon
+                content across the following domains: 1) topic (control,
+                women’s, or neighbors’ rights), 2) framing (fully religious or
+                partially secular), 3) information sharing (plea to share
+                content with wives or no plea). I find sizable impacts of
+                women's rights sermons (0.23 SD) and neighbors’ rights sermons
+                (0.20 SD) on men's beliefs and behavior as measured through
+                lab-in-field games, field behavioral measures, and survey
+                responses 2-4 weeks after treatments. I find suggestive
+                evidence that effects extend downstream: wives of husbands who
+                received sermons on women's rights report more prosocial beliefs
+                and improved well-being. Secular framing diminishes effects for
+                women’s rights sermons but increases them for sermons on
+                neighbors’ rights, consistent with a simple Bayesian framework
+                modified to allow religious priors to gate secular persuasion.
+                Finally, I document evidence of demand-side backlash to women’s
+                rights sermons as reflected in lower attendance numbers, as well
+                as supply-side persistence in prosociality of sermon content.
+              </p>
+            </article>
+          </div>
+
+          <div class="wip-block">
+            <h3>Select work in progress</h3>
+
+            <div class="papers-list">
+              <article class="paper-item">
+                <h3>Doctor's Orders vs Divine Wisdom</h3>
+                <div class="paper-actions">
+                  <button
+                    class="abstract-btn"
+                    type="button"
+                    data-target="abs-2"
+                    aria-expanded="false"
+                  >
+                    Abstract
+                  </button>
+                  <a href="#">Slides</a>
+                </div>
+                <p id="abs-2" class="abstract-text" hidden>
+                  Low trust in secular state institutions can limit the
+                  effectiveness of informational interventions among religious
+                  populations. Recent work has suggested the potential for
+                  religious leaders to be utilized for information dissemination,
+                  but research directly comparing the efficacy of religious with
+                  secular leaders is lacking. Moreover, what, if any, are the
+                  unintended consequences of utilizing religious leaders as
+                  frontline agents tasked with achieving state goals? In this
+                  project, I explore the educational role of local leaders and
+                  compare the ability of local religious and secular leaders to
+                  encourage positive health behaviors in the context of a
+                  state-sponsored handwashing campaign in Punjab, Pakistan. In
+                  collaboration with the Pakistan Ministry of Health, I
+                  randomize Pakistani couples to meetings with either their
+                  local health worker or religious leader (imam) and then
+                  evaluate changes in hand hygiene and health beliefs.
+                </p>
+              </article>
+
+              <article class="paper-item">
+                <h3>The Market for Religious Content: Evidence from Friday Sermons in Pakistan</h3>
+                <div class="paper-actions">
+                  <button
+                    class="abstract-btn"
+                    type="button"
+                    data-target="abs-3"
+                    aria-expanded="false"
+                  >
+                    Abstract
+                  </button>
+                  <a href="#">Slides</a>
+                </div>
+                <p id="abs-3" class="abstract-text" hidden>
+                  What drives religious content? In this project, I explore
+                  this question from both the demand and supply side in the
+                  context of mosques in Punjab, Pakistan. On the demand side, I
+                  provide congregants with content information about nearby
+                  mosques and evaluate impacts on mosque choice. On the supply
+                  side, I provide religious leaders with market information or
+                  top-down information and study endogenous changes to sermon
+                  content.
+                </p>
+              </article>
+
+              <article class="paper-item">
+                <h3>The Value of Subordinates: Organizational Hierarchy and Mid-Level Career Progression</h3>
+                <p class="paper-meta">with Famy Xia</p>
+                <div class="paper-actions">
+                  <button
+                    class="abstract-btn"
+                    type="button"
+                    data-target="abs-4"
+                    aria-expanded="false"
+                  >
+                    Abstract
+                  </button>
+                  <a href="#">Slides</a>
+                </div>
+                <p id="abs-4" class="abstract-text" hidden>
+                  This project studies how organizational structure shapes
+                  career progression for mid-level workers, with a focus on the
+                  value created by managing subordinates and coordinating within
+                  hierarchy.
+                </p>
+              </article>
+
+              <article class="paper-item compact">
+                <h3>Mapping out Property Rights and Informality in Indonesia</h3>
+                <p class="paper-meta">with Maisy Wong and Nina Harari</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="projects" hidden>
+          <header class="section-header">
+            <p class="eyebrow">Personal projects</p>
+            <h2>Work beyond the dissertation</h2>
+            <p class="section-copy">
+              Independent projects that connect history, place, and cultural
+              memory.
+            </p>
+          </header>
+
+          <div class="papers-list">
+            <article class="paper-item project-item">
+              <h3>The Spiritual Landscape of Pakistan</h3>
+              <p class="paper-meta">with Rauf Nawaz</p>
+              <p class="abstract-text">
+                A map of Sufi shrines, Hindu temples, and Sikh gurdwaras in
+                Pakistan together with their oral and written histories.
+              </p>
+            </article>
+          </div>
+        </section>
       </section>
     </main>
 
     <script>
       const abstractButtons = document.querySelectorAll(".abstract-btn");
+      const tabButtons = document.querySelectorAll(".tab-link");
+      const tabPanels = document.querySelectorAll(".tab-panel");
 
       abstractButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -205,6 +273,22 @@
           if (abstract) {
             abstract.hidden = isOpen;
           }
+        });
+      });
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextTab = button.getAttribute("data-tab");
+
+          tabButtons.forEach((item) => {
+            item.classList.toggle("is-active", item === button);
+          });
+
+          tabPanels.forEach((panel) => {
+            const isActive = panel.id === nextTab;
+            panel.hidden = !isActive;
+            panel.classList.toggle("is-active", isActive);
+          });
         });
       });
     </script>
