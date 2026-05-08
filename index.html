@@ -28,42 +28,24 @@
           <a class="btn" href="#">CV</a>
           <a class="btn" href="mailto:you@example.com">Email</a>
         </div>
+
+        <div class="prose-block sidebar-bio">
+          <p>
+            Hello! I'm a 5th year PhD candidate in Public Policy (Economics
+            track) at Harvard University.
+          </p>
+          <p>
+            I work on topics in Development Economics and Political Economy.
+          </p>
+          <p>
+            I completed my undergraduate studies from Dartmouth College and
+            worked as a pre-doc at Wharton before beginning my PhD.
+          </p>
+        </div>
       </aside>
 
       <section class="content-panel">
-        <nav class="tab-nav" aria-label="Site sections">
-          <button class="tab-link is-active" type="button" data-tab="about">
-            About me
-          </button>
-          <button class="tab-link" type="button" data-tab="research">
-            Research
-          </button>
-          <button class="tab-link" type="button" data-tab="projects">
-            Personal projects
-          </button>
-        </nav>
-
-        <section class="tab-panel is-active" id="about">
-          <header class="section-header">
-            <h2>About me</h2>
-          </header>
-
-          <div class="prose-block">
-            <p>
-              Hello! I'm a 5th year PhD candidate in Public Policy (Economics
-              track) at Harvard University.
-            </p>
-            <p>
-              I work on topics in Development Economics and Political Economy.
-            </p>
-            <p>
-              I completed my undergraduate studies from Dartmouth College and
-              worked as a pre-doc at Wharton before beginning my PhD.
-            </p>
-          </div>
-        </section>
-
-        <section class="tab-panel" id="research" hidden>
+        <section id="research">
           <header class="section-header">
             <h2>Working papers</h2>
           </header>
@@ -203,7 +185,7 @@
           </div>
         </section>
 
-        <section class="tab-panel" id="projects" hidden>
+        <section id="projects">
           <header class="section-header">
             <h2>Personal projects</h2>
           </header>
@@ -223,37 +205,12 @@
     </main>
 
     <script>
-      const abstractButtons = document.querySelectorAll(".abstract-btn");
-      const tabButtons = document.querySelectorAll(".tab-link");
-      const tabPanels = document.querySelectorAll(".tab-panel");
-
-      abstractButtons.forEach((button) => {
+      document.querySelectorAll(".abstract-btn").forEach((button) => {
         button.addEventListener("click", () => {
-          const targetId = button.getAttribute("data-target");
-          const abstract = document.getElementById(targetId);
+          const abstract = document.getElementById(button.getAttribute("data-target"));
           const isOpen = button.getAttribute("aria-expanded") === "true";
-
           button.setAttribute("aria-expanded", String(!isOpen));
-
-          if (abstract) {
-            abstract.hidden = isOpen;
-          }
-        });
-      });
-
-      tabButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const nextTab = button.getAttribute("data-tab");
-
-          tabButtons.forEach((item) => {
-            item.classList.toggle("is-active", item === button);
-          });
-
-          tabPanels.forEach((panel) => {
-            const isActive = panel.id === nextTab;
-            panel.hidden = !isActive;
-            panel.classList.toggle("is-active", isActive);
-          });
+          if (abstract) abstract.hidden = isOpen;
         });
       });
     </script>

@@ -161,47 +161,19 @@ h1 {
   padding: 1.4rem;
 }
 
-.tab-nav {
-  display: flex;
-  gap: 0.65rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.35rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--line);
+.sidebar-bio {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
 }
 
-.tab-link {
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.52);
-  color: var(--muted);
-  border-radius: 999px;
-  padding: 0.65rem 1rem;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
+#research {
+  margin-bottom: 2rem;
 }
 
-.tab-link:hover,
-.tab-link:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(31, 95, 191, 0.28);
-  color: var(--text);
-}
-
-.tab-link.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(31, 95, 191, 0.18);
-}
-
-.tab-panel {
-  animation: rise 260ms ease both;
+#projects {
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
 }
 
 .section-header h2,
