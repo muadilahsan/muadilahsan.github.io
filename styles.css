@@ -176,16 +176,27 @@ h1 {
   padding-top: 1.4rem;
 }
 
-.section-header h2,
-.section-header h3,
-.wip-block > h3 {
+.section-header h2 {
   margin: 0;
   font-size: 1.3rem;
   letter-spacing: -0.02em;
 }
 
+.subsection-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
 .section-header p {
-  margin: 0.25rem 0 1rem;
+  margin: 0.25rem 0 0;
   color: var(--body-copy);
 }
 
@@ -321,15 +332,6 @@ h1 {
 
   .actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .tab-nav {
-    gap: 0.5rem;
-  }
-
-  .tab-link {
-    width: 100%;
-    justify-content: center;
   }
 
   .btn {
