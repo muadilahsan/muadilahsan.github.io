@@ -161,13 +161,6 @@ h1 {
   padding: 1.4rem;
 }
 
-.sidebar-note {
-  margin: 1rem 0 0;
-  color: var(--body-copy);
-  line-height: 1.6;
-  text-align: center;
-}
-
 .tab-nav {
   display: flex;
   gap: 0.65rem;
@@ -224,19 +217,6 @@ h1 {
   color: var(--body-copy);
 }
 
-.eyebrow {
-  margin: 0 0 0.35rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.section-copy {
-  max-width: 62ch;
-}
-
 .prose-block {
   display: grid;
   gap: 0.95rem;
@@ -248,32 +228,6 @@ h1 {
   color: var(--body-copy);
   line-height: 1.7;
   font-size: 1.02rem;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.info-card {
-  padding: 1rem 1.05rem;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.45);
-}
-
-.info-card p {
-  margin: 0;
-  color: var(--body-copy);
-  line-height: 1.6;
-}
-
-.card-label {
-  margin-bottom: 0.45rem !important;
-  color: var(--text) !important;
-  font-weight: 700;
 }
 
 .papers-list {
@@ -379,9 +333,6 @@ h1 {
     position: static;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 640px) {
