@@ -79,7 +79,7 @@ a {
 .banner {
   grid-column: 1 / -1;
   width: 100%;
-  aspect-ratio: 24 / 13;
+  aspect-ratio: 3 / 1;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 14px 30px rgba(20, 30, 50, 0.12);
@@ -100,20 +100,27 @@ a {
 }
 
 .profile-panel {
-  padding: 1.4rem;
+  padding: 0 1.4rem 1.4rem;
   position: sticky;
   top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-panel {
+  padding-top: 1.4rem;
 }
 
 .profile-photo {
-  width: 100%;
+  width: 240px;
+  height: 240px;
   display: block;
-  margin: 0;
-  aspect-ratio: 1 / 1;
+  margin: -110px 0 0.5rem;
   border-radius: 18px;
   object-fit: cover;
   object-position: center 18%;
-  border: 1px solid var(--line);
+  border: 4px solid #ffffff;
   box-shadow: 0 14px 26px rgba(20, 30, 50, 0.18);
 }
 
@@ -330,6 +337,22 @@ h1 {
 
   .profile-panel {
     position: static;
+    align-items: flex-start;
+  }
+
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    margin-top: -90px;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    margin-top: -60px;
   }
 }
 
