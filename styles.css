@@ -130,6 +130,10 @@ h1 {
   border-top: 1px solid var(--line);
 }
 
+.actions .btn:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
