@@ -69,11 +69,28 @@ a {
 
 .layout {
   width: min(1180px, 94vw);
-  margin: 3rem auto;
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 1.2rem;
   align-items: start;
+}
+
+.banner {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 240px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: -90px;
+  box-shadow: 0 14px 30px rgba(20, 30, 50, 0.12);
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .profile-panel,
@@ -87,17 +104,24 @@ a {
   padding: 1.4rem;
   position: sticky;
   top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-panel {
+  margin-top: 90px;
 }
 
 .profile-photo {
-  width: 100%;
+  width: 180px;
+  height: 180px;
   display: block;
-  margin: 0;
-  aspect-ratio: 1 / 1;
-  border-radius: 18px;
+  margin: 0 0 0.4rem;
+  border-radius: 50%;
   object-fit: cover;
   object-position: center 18%;
-  border: 1px solid var(--line);
+  border: 5px solid #ffffff;
   box-shadow: 0 14px 26px rgba(20, 30, 50, 0.18);
 }
 
@@ -316,6 +340,19 @@ h1 {
     position: static;
   }
 
+  .content-panel {
+    margin-top: 0;
+  }
+
+  .banner {
+    height: 180px;
+    margin-bottom: -70px;
+  }
+
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+  }
 }
 
 @media (max-width: 640px) {
