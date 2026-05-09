@@ -337,9 +337,9 @@ h1 {
   }
 
   .profile-photo {
-    width: 180px;
-    height: 180px;
-    margin-top: -60px;
+    width: 240px;
+    height: 240px;
+    margin: -80px auto 0;
   }
 
   .actions {
@@ -363,9 +363,9 @@ h1 {
   }
 
   .profile-photo {
-    width: 140px;
-    height: 140px;
-    margin-top: -50px;
+    width: 200px;
+    height: 200px;
+    margin: -65px auto 0;
   }
 
   .btn {
