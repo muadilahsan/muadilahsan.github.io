@@ -251,33 +251,33 @@ h1 {
   align-items: center;
 }
 
-.paper-actions a {
-  color: #1d4fa8;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration-thickness: 1px;
-}
-
+.paper-actions a,
 .abstract-btn {
+  display: inline-flex;
+  align-items: center;
   border: none;
-  background: #1a3a6e;
+  background: #5b9bd5;
   color: #ffffff;
   font: inherit;
   font-weight: 600;
+  font-size: 0.88rem;
   border-radius: 10px;
-  padding: 0.18rem 0.5rem;
-  line-height: 1.1;
+  padding: 0.18rem 0.55rem;
+  line-height: 1.4;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color 180ms ease;
 }
 
+.paper-actions a:hover,
+.paper-actions a:focus-visible,
 .abstract-btn:hover,
 .abstract-btn:focus-visible {
-  background: #142d56;
+  background: #4a86c0;
 }
 
 .abstract-btn[aria-expanded="true"] {
-  background: var(--accent);
+  background: #3a72aa;
 }
 
 .wip-block {
