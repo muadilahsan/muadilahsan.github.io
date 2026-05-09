@@ -260,7 +260,7 @@ h1 {
 
 .abstract-btn {
   border: none;
-  background: #8a99af;
+  background: #1a3a6e;
   color: #ffffff;
   font: inherit;
   font-weight: 600;
@@ -273,7 +273,7 @@ h1 {
 
 .abstract-btn:hover,
 .abstract-btn:focus-visible {
-  background: #5d6f8f;
+  background: #142d56;
 }
 
 .abstract-btn[aria-expanded="true"] {
@@ -282,7 +282,6 @@ h1 {
 
 .wip-block {
   margin-top: 1rem;
-  border-top: 1px solid var(--line);
   padding-top: 0.9rem;
 }
 
