@@ -257,6 +257,11 @@ h1 {
   font-size: 0.95rem;
 }
 
+.jmp-tag {
+  color: #c0392b;
+  font-weight: 700;
+}
+
 .abstract-text {
   margin: 0.7rem 0 0;
   color: var(--body-copy);
