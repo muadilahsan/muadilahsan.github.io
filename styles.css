@@ -79,7 +79,7 @@ a {
 .banner {
   grid-column: 1 / -1;
   width: 100%;
-  aspect-ratio: 960 / 327;
+  aspect-ratio: 1024 / 348;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 14px 30px rgba(20, 30, 50, 0.12);
