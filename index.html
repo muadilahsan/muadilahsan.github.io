@@ -19,9 +19,6 @@
     <div class="bg-shape shape-2" aria-hidden="true"></div>
 
     <main class="layout">
-      <div class="banner">
-        <img src="banner.jpg" alt="" />
-      </div>
       <aside class="profile-panel">
         <img
           class="profile-photo"
@@ -53,11 +50,42 @@
       </aside>
 
       <section class="content-panel">
-        <section id="research">
-          <header class="section-header">
-            <h2>Research</h2>
-          </header>
+        <div class="tabs" role="tablist" aria-label="Sections">
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-research"
+            aria-controls="research"
+            aria-selected="true"
+          >
+            Research
+          </button>
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-photos"
+            aria-controls="photos"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            Field Photos
+          </button>
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-projects"
+            aria-controls="projects"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            Personal Projects
+          </button>
+        </div>
 
+        <section id="research" role="tabpanel" aria-labelledby="tab-research">
           <p class="subsection-label">Working papers</p>
 
           <div class="papers-list">
@@ -274,11 +302,38 @@
           </div>
         </section>
 
-        <section id="projects">
-          <header class="section-header">
-            <h2>Personal Projects</h2>
-          </header>
+        <section id="photos" role="tabpanel" aria-labelledby="tab-photos" hidden>
+          <div class="prose-block">
+            <p>Scenes from fieldwork in Punjab, Pakistan.</p>
+          </div>
 
+          <div class="photo-grid">
+            <figure class="photo-card wide">
+              <img
+                src="photos/sermon-training-imams.jpg"
+                alt="Adil Ahsan presenting to a group of imams seated on couches"
+                loading="lazy"
+              />
+              <figcaption>
+                Training session with imams ahead of the sermons experiment
+                &middot; Punjab, Pakistan
+              </figcaption>
+            </figure>
+
+            <!--
+              Add one figure per photo. Drop the image files in photos/ and
+              copy this block, changing src, alt, and the caption. Add
+              class="wide" to a photo-card to make it span two columns.
+
+            <figure class="photo-card">
+              <img src="photos/example.jpg" alt="Short description of the photo" loading="lazy" />
+              <figcaption>Caption &middot; Location, Year</figcaption>
+            </figure>
+            -->
+          </div>
+        </section>
+
+        <section id="projects" role="tabpanel" aria-labelledby="tab-projects" hidden>
           <div class="papers-list">
             <article class="paper-item project-item">
               <h3><a href="https://raufnawaz.github.io/Sufi-Shrines/" target="_blank">The Spiritual Landscape of Pakistan</a></h3>
@@ -294,6 +349,53 @@
     </main>
 
     <script>
+      const tabs = Array.from(document.querySelectorAll(".tab"));
+
+      function selectTab(tab, { focus = false, updateHash = true } = {}) {
+        tabs.forEach((other) => {
+          const selected = other === tab;
+          other.setAttribute("aria-selected", String(selected));
+          other.tabIndex = selected ? 0 : -1;
+          const panel = document.getElementById(other.getAttribute("aria-controls"));
+          if (panel) panel.hidden = !selected;
+        });
+        if (focus) tab.focus();
+        if (updateHash) {
+          history.replaceState(null, "", "#" + tab.getAttribute("aria-controls"));
+        }
+      }
+
+      function keepTabsInView() {
+        const bar = document.querySelector(".tabs");
+        if (bar && bar.getBoundingClientRect().top < 0) {
+          bar.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          selectTab(tab);
+          keepTabsInView();
+        });
+        tab.addEventListener("keydown", (event) => {
+          const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+          if (!step) return;
+          event.preventDefault();
+          const next = tabs[(tabs.indexOf(tab) + step + tabs.length) % tabs.length];
+          selectTab(next, { focus: true });
+        });
+      });
+
+      const fromHash = tabs.find(
+        (tab) => "#" + tab.getAttribute("aria-controls") === window.location.hash
+      );
+      if (fromHash) {
+        selectTab(fromHash, { updateHash: false });
+        // The hash matches a panel id, so the browser jumps to it on load.
+        // Deep links should still open at the top of the page.
+        window.scrollTo(0, 0);
+      }
+
       document.querySelectorAll(".abstract-btn").forEach((button) => {
         button.addEventListener("click", () => {
           const abstract = document.getElementById(button.getAttribute("data-target"));
