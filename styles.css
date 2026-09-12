@@ -1,12 +1,13 @@
 :root {
-  --bg: #fbfaf7;
-  --text: #1d1b17;
-  --body-copy: #46433d;
-  --muted: #7b766d;
-  --line: rgba(29, 27, 23, 0.11);
-  --line-strong: rgba(29, 27, 23, 0.22);
-  --accent: #8a2f39;
-  --accent-soft: rgba(138, 47, 57, 0.07);
+  --bg: #f7f9fc;
+  --text: #16202f;
+  --body-copy: #3e4a5c;
+  --muted: #6d7890;
+  --line: rgba(22, 32, 47, 0.12);
+  --line-strong: rgba(22, 32, 47, 0.2);
+  --accent: #2f6fb5;
+  --accent-soft: rgba(47, 111, 181, 0.09);
+  --jmp: #c0392b;
 
   --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -143,28 +144,30 @@ a:hover {
   border-radius: 3px;
   object-fit: cover;
   object-position: center 18%;
-  box-shadow: 0 1px 2px rgba(29, 27, 23, 0.1), 0 8px 24px rgba(29, 27, 23, 0.08);
+  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.1), 0 8px 24px rgba(22, 32, 47, 0.08);
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 1rem;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   text-decoration: none;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  color: var(--text);
-  background: transparent;
-  font-size: 0.82rem;
+  padding: 0.4rem 0.4rem;
+  border-radius: 8px;
+  border: 1px solid rgba(47, 111, 181, 0.28);
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.8rem;
   font-weight: 500;
+  line-height: 1.25;
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
@@ -173,15 +176,17 @@ a:hover {
 
 .btn:hover,
 .btn:focus-visible {
-  color: var(--accent);
+  color: #ffffff;
   border-color: var(--accent);
-  background: var(--accent-soft);
+  background: var(--accent);
 }
 
 /* ---------- Shared content styles ---------- */
 
 .content-panel {
-  padding-top: 0.15rem;
+  /* Pulls the first line's cap height up to the top edge of the photo;
+     text boxes sit lower than their glyphs by roughly half the leading. */
+  margin-top: -0.45rem;
   min-width: 0;
 }
 
@@ -240,7 +245,7 @@ a:hover {
 }
 
 .jmp-tag {
-  color: var(--accent);
+  color: var(--jmp);
   font-weight: 600;
 }
 
@@ -256,9 +261,9 @@ a:hover {
 .abstract-btn {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--line-strong);
-  background: transparent;
-  color: var(--text);
+  border: 1px solid rgba(47, 111, 181, 0.28);
+  background: var(--accent-soft);
+  color: var(--accent);
   font-family: var(--sans);
   font-weight: 500;
   font-size: 0.8rem;
@@ -277,9 +282,9 @@ a:hover {
 .paper-actions a:focus-visible,
 .abstract-btn:hover,
 .abstract-btn:focus-visible {
-  color: var(--accent);
+  color: #ffffff;
   border-color: var(--accent);
-  background: var(--accent-soft);
+  background: var(--accent);
 }
 
 .abstract-btn[aria-expanded="true"],
@@ -318,6 +323,78 @@ a:hover {
   border-left: none;
   margin-top: 0.55rem;
 }
+
+/* Preview of a linked site, framed like a small browser window. */
+.site-preview {
+  display: block;
+  position: relative;
+  margin: 1.25rem 0 0;
+  max-width: 620px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.08), 0 10px 28px rgba(22, 32, 47, 0.09);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.site-preview:hover,
+.site-preview:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.08), 0 14px 34px rgba(22, 32, 47, 0.16);
+}
+
+.site-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: #eef1f6;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-preview-cta {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-top: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.site-preview-dots {
+  display: inline-flex;
+  gap: 0.3rem;
+  flex: none;
+}
+
+.site-preview-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(22, 32, 47, 0.18);
+}
+
+.site-preview-url {
+  font-size: 0.76rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 /* ---------- Teaching ---------- */
 
@@ -364,6 +441,7 @@ a:hover {
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  align-items: start;
   gap: 1.75rem 1.25rem;
   margin-top: 2rem;
 }
@@ -377,17 +455,14 @@ a:hover {
   grid-column: 1 / -1;
 }
 
-.photo-card.wide img {
-  aspect-ratio: 16 / 9;
-}
-
+/* Photos are shown whole — never cropped to a fixed ratio, so nobody
+   gets cut out of frame. */
 .photo-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   display: block;
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(29, 27, 23, 0.1), 0 8px 24px rgba(29, 27, 23, 0.08);
+  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.1), 0 8px 24px rgba(22, 32, 47, 0.08);
 }
 
 .photo-card figcaption {
@@ -440,18 +515,11 @@ a:hover {
 
   .profile-panel {
     position: static;
-    display: flex;
-    align-items: flex-end;
-    gap: 1.5rem;
+    width: 220px;
   }
 
   .profile-photo {
-    width: 180px;
-    flex: none;
-  }
-
-  .actions {
-    margin-top: 0;
+    width: 100%;
   }
 }
 
@@ -469,18 +537,11 @@ a:hover {
   }
 
   .profile-panel {
-    display: block;
-  }
-
-  .profile-photo {
     width: 190px;
-  }
-
-  .actions {
-    margin-top: 1.1rem;
   }
 
   .paper-item h3 {
     font-size: 1.2rem;
   }
+
 }
