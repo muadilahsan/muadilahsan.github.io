@@ -1,20 +1,20 @@
+/* Palette, type, and controls are the site's original ones; the layout
+   around them (tabs, photo caption block, carousel) is the current one. */
 :root {
-  --paper: #f4f8fc;
-  --ink: #16202f;
-  --body: #3e4a5c;
-  --muted: #6d7890;
-  --rule: rgba(22, 32, 47, 0.14);
-  --rule-soft: rgba(22, 32, 47, 0.08);
-  --blue: #2f6fb5;
-  --blue-deep: #1d4c7d;
-  --blue-wash: rgba(47, 111, 181, 0.09);
+  --bg: #f3f7fc;
+  --text: #162033;
+  --muted: #5d6b82;
+  --body-copy: #465468;
+  --line: rgba(22, 32, 51, 0.12);
+  --accent: #1f5fbf;
+  --accent-soft: rgba(31, 95, 191, 0.12);
+  --button-blue: #5b9bd5;
+  --button-blue-hover: #4a86c0;
+  --button-blue-active: #3a72aa;
   --red: #c0392b;
 
-  --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
-  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-
-  --gutter: min(1080px, 90vw);
-  --photo-w: 248px;
+  --gutter: min(1080px, 92vw);
+  --photo-w: 300px;
 }
 
 * {
@@ -29,50 +29,65 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--serif);
-  font-size: 1.09rem;
-  line-height: 1.66;
-  color: var(--body);
-  background: var(--paper);
-  -webkit-font-smoothing: antialiased;
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(52, 120, 246, 0.12), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(103, 159, 255, 0.1), transparent 22%),
+    var(--bg);
+  position: relative;
+  overflow-x: hidden;
 }
 
 a {
-  color: var(--blue);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  color: var(--accent);
 }
 
-a:hover {
-  color: var(--blue-deep);
+.bg-shape {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(12px);
+  pointer-events: none;
+  opacity: 0.9;
 }
 
-/* Small letterspaced sans — used for nav, section labels, and UI chrome. */
-.eyebrow,
-.subsection-label,
-.tab,
-.role,
-.btn,
-.paper-actions,
-.paper-meta,
-.course-terms,
-.carousel-count {
-  font-family: var(--sans);
+.shape-1 {
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(
+    145deg,
+    rgba(52, 120, 246, 0.22),
+    rgba(52, 120, 246, 0.03)
+  );
+  top: -100px;
+  right: -60px;
 }
 
-/* ---------- Masthead nav ---------- */
+.shape-2 {
+  width: 260px;
+  height: 260px;
+  background: linear-gradient(
+    145deg,
+    rgba(122, 167, 255, 0.2),
+    rgba(122, 167, 255, 0.03)
+  );
+  bottom: -70px;
+  left: -80px;
+}
+
+/* ---------- Nav ---------- */
 
 .topbar {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--paper);
+  background: var(--bg);
 }
 
 .topbar-inner {
   width: var(--gutter);
   margin: 0 auto;
-  min-height: 72px;
+  min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -82,7 +97,7 @@ a:hover {
 .tabs {
   display: flex;
   align-items: baseline;
-  gap: 1.9rem;
+  gap: 1.6rem;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
@@ -91,37 +106,34 @@ a:hover {
   border: none;
   background: transparent;
   color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
   padding: 0;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 160ms ease;
+  transition: color 180ms ease;
 }
 
 .tab:hover,
 .tab:focus-visible {
-  color: var(--ink);
+  color: var(--text);
 }
 
 .tab[aria-selected="true"] {
-  color: var(--blue);
-  font-weight: 700;
+  color: var(--accent);
 }
 
 /* ---------- Layout ---------- */
 
 .layout {
   width: var(--gutter);
-  margin: 1.6rem auto 5.5rem;
+  margin: 1.4rem auto 4.5rem;
   display: grid;
   grid-template-columns: var(--photo-w) 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: start;
 }
-
 
 .profile-panel {
   position: sticky;
@@ -132,227 +144,201 @@ a:hover {
 .profile-photo {
   width: 100%;
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
   object-fit: cover;
-  object-position: center 16%;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
+  object-position: center 18%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 14px 26px rgba(20, 30, 50, 0.18);
 }
 
 .profile-name {
-  margin: 1.05rem 0 0;
-  font-family: var(--serif);
-  font-size: 1.62rem;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0.005em;
-  color: var(--ink);
+  margin: 1.15rem 0 0;
+  font-size: 1.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
 .role {
-  margin: 0.45rem 0 0;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  line-height: 1.6;
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--body-copy);
 }
 
 .actions {
-  display: flex;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-top: 1.15rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   text-decoration: none;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  color: var(--ink);
-  background: transparent;
-  font-size: 0.66rem;
+  padding: 0.55rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.5);
   font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  min-height: 44px;
   /* "Twitter / X" would otherwise break across two lines in its own box. */
   white-space: nowrap;
   transition:
-    color 160ms ease,
-    border-color 160ms ease,
-    background-color 160ms ease;
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  color: var(--blue);
-  border-color: var(--blue);
-  background: var(--blue-wash);
+  transform: translateY(-1px);
+  background: rgba(23, 34, 42, 0.04);
+  border-color: rgba(23, 34, 42, 0.2);
 }
 
 .content-panel {
-  /* Lifts the first line's cap height level with the top of the photo. */
-  margin-top: -0.4rem;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  /* Every panel is measured against the portrait: anything shorter is
-     centred on it, anything longer simply runs past it from the top. The
-     extra 0.8rem cancels the lift above, so the centring lands on the
-     middle of the photo rather than 0.4rem above it. */
+  /* Panels shorter than the portrait centre on it; longer ones run past
+     it from the top. */
   justify-content: center;
-  min-height: calc(var(--photo-w) * 5 / 4 + 0.8rem);
+  min-height: var(--photo-w);
 }
 
 /* ---------- Shared ---------- */
 
 .subsection-label {
-  margin: 0 0 1.15rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .prose-block {
   display: grid;
-  gap: 1.05rem;
-  max-width: 58ch;
+  gap: 0.95rem;
+  max-width: 66ch;
 }
 
 .prose-block p {
   margin: 0;
+  color: var(--body-copy);
+  line-height: 1.7;
+  font-size: 1.02rem;
 }
 
 /* ---------- Research ---------- */
 
 .papers-list {
   display: grid;
+  gap: 0.25rem;
 }
 
 .paper-item {
-  padding: 1.4rem 0;
-  border-top: 1px solid var(--rule-soft);
-  animation: rise 320ms ease both;
-}
-
-.papers-list .paper-item:first-child {
-  border-top: none;
-  padding-top: 0;
+  padding: 0.8rem 0 1.05rem;
+  animation: rise 380ms ease both;
 }
 
 .paper-item h3 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 1.34rem;
-  font-weight: 600;
-  line-height: 1.28;
-  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.35;
+  color: var(--text);
 }
 
 .paper-meta {
-  margin: 0.3rem 0 0;
-  color: var(--muted);
-  font-size: 0.83rem;
-  letter-spacing: 0.01em;
+  margin: 0.35rem 0 0.45rem;
+  color: var(--body-copy);
+  font-size: 0.95rem;
 }
 
 .jmp-tag {
   color: var(--red);
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  font-size: 0.7rem;
+  font-weight: 700;
 }
 
-/* Actions read as a run of linked words divided by hairlines, the way a
-   journal lists its formats — not as buttons. */
 .paper-actions {
   display: flex;
+  gap: 0.65rem;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 0.7rem;
-  font-size: 0.82rem;
+  margin: 0;
 }
 
 .paper-actions a,
 .abstract-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border: none;
-  background: none;
-  padding: 0 0.7rem;
-  margin: 0.1rem 0;
+  background: var(--button-blue);
+  color: #ffffff;
   font: inherit;
-  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 10px;
+  padding: 0.18rem 0.55rem;
+  line-height: 1.4;
   cursor: pointer;
   text-decoration: none;
-  border-left: 1px solid var(--rule);
-  transition: color 160ms ease;
-}
-
-.paper-actions > *:first-child {
-  padding-left: 0;
-  border-left: none;
+  transition: background-color 180ms ease;
 }
 
 .paper-actions a:hover,
 .paper-actions a:focus-visible,
 .abstract-btn:hover,
 .abstract-btn:focus-visible {
-  color: var(--blue-deep);
-  text-decoration: underline;
+  background: var(--button-blue-hover);
 }
 
-.abstract-btn[aria-expanded="true"] {
-  color: var(--ink);
-  font-weight: 600;
+.abstract-btn[aria-expanded="true"],
+.abstract-btn[aria-expanded="true"]:hover {
+  background: var(--button-blue-active);
 }
 
 .abstract-text {
-  margin: 1rem 0 0;
-  padding-left: 1.15rem;
-  border-left: 2px solid var(--rule);
-  max-width: 64ch;
-  font-size: 1.04rem;
-  line-height: 1.68;
+  margin: 0.7rem 0 0;
+  color: var(--body-copy);
+  font-size: 1rem;
+  line-height: 1.58;
+  max-width: 70ch;
 }
 
 .wip-block {
-  margin-top: 3rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
 }
 
 /* ---------- Teaching ---------- */
 
 .course-list {
   display: grid;
+  gap: 0.25rem;
 }
 
 .course-item {
-  padding: 1rem 0;
-  border-top: 1px solid var(--rule-soft);
-  animation: rise 320ms ease both;
-}
-
-.course-list .course-item:first-child {
-  border-top: none;
-  padding-top: 0;
+  padding: 0.8rem 0 0.9rem;
+  animation: rise 380ms ease both;
 }
 
 .course-item h3 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.35;
+  color: var(--text);
 }
 
 .course-terms {
@@ -365,42 +351,33 @@ a:hover {
 }
 
 .course-group {
-  margin-top: 3rem;
+  margin-top: 1.9rem;
 }
 
 /* ---------- Personal projects ---------- */
 
 .project-item h3 a {
-  color: var(--blue);
+  color: var(--accent);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 .project-item h3 a:hover,
 .project-item h3 a:focus-visible {
-  color: var(--blue-deep);
   text-decoration-thickness: 2px;
-}
-
-.project-item .abstract-text {
-  padding-left: 0;
-  border-left: none;
-  margin-top: 0.5rem;
 }
 
 /* ---------- Field photo carousel ---------- */
 
 .carousel {
-  margin-top: 1.6rem;
+  margin-top: 1.4rem;
 }
 
-/* No frame, no fill: the photo sits on the page like any other image, and
-   the letterboxing either side simply reads as margin. */
 .carousel-viewport {
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
+  border-radius: 18px;
 }
 
 .carousel-track {
@@ -429,49 +406,58 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
-  margin-top: 0.75rem;
+  gap: 0.9rem;
+  margin-top: 0.9rem;
 }
 
 .carousel-nav {
-  border: none;
-  background: none;
-  padding: 0.1rem 0.5rem;
-  color: var(--muted);
-  font-size: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--text);
+  font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
-  transition: color 160ms ease;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.carousel-nav span {
+  /* Optical centring: the chevron glyphs sit low in their box. */
+  margin-top: -3px;
 }
 
 .carousel-nav:hover,
 .carousel-nav:focus-visible {
-  color: var(--blue);
+  transform: translateY(-1px);
+  background: rgba(23, 34, 42, 0.04);
+  border-color: rgba(23, 34, 42, 0.2);
 }
 
 .carousel-count {
-  margin: 0;
   min-width: 3.5rem;
+  margin: 0;
   text-align: center;
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--muted);
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -497,13 +483,13 @@ a:hover {
 
   .tabs {
     justify-content: flex-start;
-    gap: 1.3rem;
+    gap: 1.2rem;
   }
 
   .layout {
     grid-template-columns: 1fr;
-    gap: 2.4rem;
-    margin: 1.4rem auto 3.5rem;
+    gap: 2.2rem;
+    margin: 1.2rem auto 3.5rem;
   }
 
   /* The panel fills the column so the role line and buttons have room;
@@ -518,16 +504,9 @@ a:hover {
     width: 230px;
   }
 
-  /* Dividers read as stray marks once this row wraps, which it does at
-     this width, so spacing carries the separation instead. */
-  .paper-actions {
-    gap: 0.2rem 1.15rem;
-  }
-
-  .paper-actions a,
-  .abstract-btn {
-    padding: 0;
-    border-left: none;
+  .actions {
+    grid-template-columns: repeat(3, minmax(0, auto));
+    justify-content: start;
   }
 
   /* The term list drops to its own line here, where a leading middot
@@ -540,14 +519,9 @@ a:hover {
     content: none;
   }
 
-  .actions {
-    justify-content: flex-start;
-  }
-
   /* Single column here, so there is no portrait to measure against. */
   .content-panel {
     display: block;
-    margin-top: 0;
     min-height: 0;
   }
 
@@ -558,23 +532,19 @@ a:hover {
 
 @media (max-width: 560px) {
   .tabs {
-    gap: 1rem;
+    gap: 0.95rem;
   }
 
   .tab {
-    font-size: 0.67rem;
-    letter-spacing: 0.1em;
+    font-size: 0.88rem;
   }
 
   .profile-photo {
     width: 205px;
   }
 
-  .paper-item h3 {
-    font-size: 1.2rem;
-  }
-
-  .carousel-viewport {
-    aspect-ratio: 4 / 3;
+  .btn {
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
   }
 }
