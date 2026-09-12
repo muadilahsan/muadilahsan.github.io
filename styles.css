@@ -14,7 +14,7 @@
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   --gutter: min(1080px, 90vw);
-  --photo-w: 248px;
+  --photo-w: 315px;
 }
 
 * {
@@ -516,7 +516,7 @@ a:hover {
   }
 
   .profile-photo {
-    width: 230px;
+    width: 250px;
     margin-inline: auto;
   }
 
@@ -569,7 +569,7 @@ a:hover {
   }
 
   .profile-photo {
-    width: 205px;
+    width: 220px;
   }
 
   .paper-item h3 {
