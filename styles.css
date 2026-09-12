@@ -1,14 +1,14 @@
 :root {
-  --paper: #fcfbf7;
-  --ink: #191814;
-  --body: #3c3a34;
-  --muted: #79736a;
-  --rule: rgba(25, 24, 20, 0.14);
-  --rule-soft: rgba(25, 24, 20, 0.08);
-  --blue: #22598f;
-  --blue-deep: #16406a;
-  --blue-wash: rgba(34, 89, 143, 0.08);
-  --red: #a8302a;
+  --paper: #f4f8fc;
+  --ink: #16202f;
+  --body: #3e4a5c;
+  --muted: #6d7890;
+  --rule: rgba(22, 32, 47, 0.14);
+  --rule-soft: rgba(22, 32, 47, 0.08);
+  --blue: #2f6fb5;
+  --blue-deep: #1d4c7d;
+  --blue-wash: rgba(47, 111, 181, 0.09);
+  --red: #c0392b;
 
   --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -55,8 +55,8 @@ a:hover {
 .paper-actions,
 .paper-meta,
 .course-terms,
-.photo-card figcaption,
-.window-chrome {
+.slide figcaption,
+.carousel-count {
   font-family: var(--sans);
 }
 
@@ -360,14 +360,16 @@ a:hover {
 /* ---------- Personal projects ---------- */
 
 .project-item h3 a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
-.project-item h3 a:hover {
-  color: var(--blue);
-  border-bottom-color: var(--blue);
+.project-item h3 a:hover,
+.project-item h3 a:focus-visible {
+  color: var(--blue-deep);
+  text-decoration-thickness: 2px;
 }
 
 .project-item .abstract-text {
@@ -376,298 +378,120 @@ a:hover {
   margin-top: 0.5rem;
 }
 
-/* ---------- Draggable window ---------- */
+/* ---------- Field photo carousel ---------- */
 
-/* A desk for the window to sit on, so it reads as something you can move
-   rather than a picture pinned to the page. */
-.stage {
-  position: relative;
-  margin-top: 1.5rem;
-  min-height: 580px;
-  border: 1px solid var(--rule-soft);
-  border-radius: 6px;
-  background-color: rgba(25, 24, 20, 0.016);
-  background-image: radial-gradient(rgba(25, 24, 20, 0.13) 1px, transparent 1px);
-  background-size: 22px 22px;
-  background-position: 11px 11px;
+.carousel {
+  margin-top: 1.75rem;
+  max-width: 680px;
 }
 
-.win {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 620px;
-  height: 400px;
-  transform: translate3d(var(--x, 0px), var(--y, 0px), 0);
+.carousel-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* A fixed-size window: every photo gets the same stage regardless of its
+   own proportions, so nothing jumps as you page through. */
+/* The viewport is the fixed window and does the clipping; the track slides
+   inside it. Clipping and transforming the same element would carry the
+   window off screen along with the photos. */
+.carousel-viewport {
+  width: 100%;
+  /* Sized so the image area lands near 4:3, the shape of most of these
+     photos — anything squarer or wider simply letterboxes. */
+  height: 552px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #121a24;
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  border: 1px solid rgba(25, 24, 20, 0.2);
-  border-radius: 9px;
-  overflow: hidden;
-  box-shadow:
-    0 1px 1px rgba(25, 24, 20, 0.07),
-    0 12px 26px rgba(25, 24, 20, 0.12),
-    0 34px 70px rgba(25, 24, 20, 0.13);
-  transition: box-shadow 200ms ease;
-}
-
-.win:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
-}
-
-.win.is-dragging,
-.win.is-resizing {
-  box-shadow:
-    0 1px 1px rgba(25, 24, 20, 0.07),
-    0 20px 38px rgba(25, 24, 20, 0.18),
-    0 48px 96px rgba(25, 24, 20, 0.18);
-}
-
-/* The frame swallows pointer events, so it is switched off mid-gesture. */
-.win.is-dragging .win-frame,
-.win.is-resizing .win-frame {
-  pointer-events: none;
-}
-
-.win-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  flex: none;
-  height: 38px;
-  padding: 0 0.7rem;
-  background: linear-gradient(#fbfbfa, #eeedea);
-  border-bottom: 1px solid rgba(25, 24, 20, 0.14);
-  cursor: grab;
-  user-select: none;
-  touch-action: none;
-}
-
-.win.is-dragging .win-bar {
-  cursor: grabbing;
-}
-
-.win-lights {
-  display: flex;
-  gap: 0.4rem;
-  flex: none;
-}
-
-.win-lights i {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #d6d3cd;
-  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
-}
-
-.win-lights i:nth-child(1) {
-  background: #ec6a5e;
-}
-.win-lights i:nth-child(2) {
-  background: #f3bf4f;
-}
-.win-lights i:nth-child(3) {
-  background: #61c454;
-}
-
-.win-title {
-  flex: 1;
   min-width: 0;
-  text-align: center;
-  font-family: var(--sans);
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: #5c5851;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin: 0;
 }
 
-.win-open {
-  flex: none;
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--blue);
-  text-decoration: none;
-  padding: 0.2rem 0.35rem;
-  border-radius: 3px;
-}
-
-.win-open:hover,
-.win-open:focus-visible {
-  background: var(--blue-wash);
-}
-
-.win-body {
-  position: relative;
+.slide img {
   flex: 1;
   min-height: 0;
-  background: #17171a;
-}
-
-/* The poster sits permanently behind the frame. While the map loads it is
-   what you see, and if the embed is ever blocked it stays the fallback
-   rather than leaving an empty rectangle. */
-.win-poster {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
+  /* Contain, not cover — a photo is never cropped to fit the window. */
+  object-fit: contain;
+  display: block;
 }
 
-.win-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  opacity: 0;
-  /* Invisible but still on top, so it must not eat clicks meant for the
-     poster underneath until it is actually showing. */
-  pointer-events: none;
-  transition: opacity 600ms ease;
-}
-
-.win.is-live .win-frame {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Appears only once the embed has loaded and before you step into it. */
-.win-body::after {
-  content: "Click to explore";
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.62);
-  color: #f3f2ef;
+.slide figcaption {
+  flex: none;
+  padding: 0.65rem 0.95rem;
+  background: #0d141c;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  color: #ccd5e0;
   font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 300ms ease;
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
-.win.is-ready .win-body::after {
-  opacity: 1;
-}
-
-.win.is-live .win-body::after {
-  opacity: 0;
-}
-
-.win-status {
+.carousel-nav {
   position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.62);
-  color: #f3f2ef;
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  transition: opacity 300ms ease;
-}
-
-.win.is-ready .win-status,
-.win.is-live .win-status {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.win-status::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  border-top-color: #ffffff;
-  animation: spin 720ms linear infinite;
-}
-
-.win-grip {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 20px;
-  height: 20px;
-  cursor: nwse-resize;
-  touch-action: none;
   z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(22, 32, 47, 0.16);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
 }
 
-.win-grip::after {
-  content: "";
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  width: 9px;
-  height: 9px;
-  border-right: 2px solid rgba(25, 24, 20, 0.3);
-  border-bottom: 2px solid rgba(25, 24, 20, 0.3);
-  border-bottom-right-radius: 3px;
+.carousel-nav span {
+  /* Optical centring: the chevron glyphs sit low in their box. */
+  margin-top: -3px;
 }
 
-.stage-hint {
-  margin: 0.85rem 0 0;
+.carousel-nav.prev {
+  left: -20px;
+}
+
+.carousel-nav.next {
+  right: -20px;
+}
+
+.carousel-nav:hover,
+.carousel-nav:focus-visible {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+.carousel-count {
+  margin: 0.7rem 0 0;
   font-family: var(--sans);
   font-size: 0.76rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
+  text-align: center;
 }
 
-/* ---------- Field photos ---------- */
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  align-items: start;
-  gap: 2rem 1.35rem;
-  margin-top: 2rem;
-}
-
-.photo-card {
-  margin: 0;
-  animation: rise 320ms ease both;
-}
-
-.photo-card.wide {
-  grid-column: 1 / -1;
-}
-
-/* Photos are shown whole — never cropped to a fixed ratio. */
-.photo-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-}
-
-.photo-card figcaption {
-  margin-top: 0.65rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
 
 @keyframes rise {
   from {
@@ -731,25 +555,17 @@ a:hover {
     margin-top: 0;
   }
 
-  /* Below this width the window is a fixed panel: no room to drag. */
-  .stage {
-    min-height: 0;
+  .carousel-viewport {
+    height: 420px;
   }
 
-  .win {
-    position: static;
-    width: 100%;
-    height: 380px;
-    transform: none;
+  /* No room to hang the buttons outside the frame at this width. */
+  .carousel-nav.prev {
+    left: 8px;
   }
 
-  .win-bar {
-    cursor: default;
-  }
-
-  .win-grip,
-  .stage-hint {
-    display: none;
+  .carousel-nav.next {
+    right: 8px;
   }
 }
 
@@ -771,7 +587,7 @@ a:hover {
     font-size: 1.2rem;
   }
 
-  .win {
-    height: 320px;
+  .carousel-viewport {
+    height: 330px;
   }
 }
