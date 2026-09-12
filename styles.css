@@ -116,9 +116,20 @@ a:hover {
   width: var(--gutter);
   margin: 1.6rem auto 5.5rem;
   display: grid;
-  grid-template-columns: 248px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 4rem;
   align-items: start;
+}
+
+/* About is the one short panel, so it reads better centred against the
+   photo than stranded at the top of the column. Every other tab runs long
+   and stays top-aligned. */
+.layout:has(#about:not([hidden])) {
+  align-items: center;
+}
+
+.layout:has(#about:not([hidden])) .content-panel {
+  margin-top: 0;
 }
 
 .profile-panel {
@@ -496,7 +507,7 @@ a:hover {
 
   .profile-panel {
     position: static;
-    width: 210px;
+    width: 250px;
     text-align: left;
   }
 
@@ -524,7 +535,7 @@ a:hover {
   }
 
   .profile-panel {
-    width: 175px;
+    width: 210px;
   }
 
   .paper-item h3 {
