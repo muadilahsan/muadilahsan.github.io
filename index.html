@@ -6,7 +6,7 @@
     <title>Adil Ahsan</title>
     <meta
       name="description"
-      content="Adil Ahsan's research and personal projects."
+      content="Adil Ahsan's research, teaching, and personal projects."
     />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
@@ -18,46 +18,29 @@
     <div class="bg-shape shape-1" aria-hidden="true"></div>
     <div class="bg-shape shape-2" aria-hidden="true"></div>
 
-    <main class="layout">
-      <aside class="profile-panel">
-        <img
-          class="profile-photo"
-          src="adilphotonew.jpg"
-          alt="Portrait of Adil Ahsan"
-        />
+    <header class="topbar">
+      <div class="topbar-inner">
+        <h1 class="brand">Adil Ahsan</h1>
 
-        <h1>Adil Ahsan</h1>
-
-        <div class="actions">
-          <a class="btn" href="cv.pdf" target="_blank">CV</a>
-          <a class="btn" href="mailto:mahsan@g.harvard.edu">Email</a>
-          <a class="btn" href="https://x.com/MuhammadAdilAh8" target="_blank">Twitter / X</a>
-        </div>
-
-        <div class="prose-block sidebar-bio">
-          <p>
-            Hello! I'm a 6th year PhD candidate in Public Policy (Economics
-            track) at Harvard University.
-          </p>
-          <p>
-            I work on topics in Development Economics and Political Economy.
-          </p>
-          <p>
-            I am on the academic job market in AY 2026-2027. My advisors are
-            Asim Khwaja, Eliana La Ferrara, and Augustin Bergeron.
-          </p>
-        </div>
-      </aside>
-
-      <section class="content-panel">
-        <div class="tabs" role="tablist" aria-label="Sections">
+        <nav class="tabs" role="tablist" aria-label="Sections">
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-about"
+            aria-controls="about"
+            aria-selected="true"
+          >
+            About Me
+          </button>
           <button
             class="tab"
             type="button"
             role="tab"
             id="tab-research"
             aria-controls="research"
-            aria-selected="true"
+            aria-selected="false"
+            tabindex="-1"
           >
             Research
           </button>
@@ -65,12 +48,12 @@
             class="tab"
             type="button"
             role="tab"
-            id="tab-photos"
-            aria-controls="photos"
+            id="tab-teaching"
+            aria-controls="teaching"
             aria-selected="false"
             tabindex="-1"
           >
-            Field Photos
+            Teaching
           </button>
           <button
             class="tab"
@@ -83,9 +66,58 @@
           >
             Personal Projects
           </button>
-        </div>
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-photos"
+            aria-controls="photos"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            Field Photos
+          </button>
+        </nav>
+      </div>
+    </header>
 
-        <section id="research" role="tabpanel" aria-labelledby="tab-research">
+    <main class="layout">
+      <aside class="profile-panel">
+        <img
+          class="profile-photo"
+          src="adilphotonew.jpg"
+          alt="Portrait of Adil Ahsan"
+        />
+
+        <div class="actions">
+          <a class="btn" href="cv.pdf" target="_blank">CV</a>
+          <a class="btn" href="mailto:mahsan@g.harvard.edu">Email</a>
+          <a class="btn" href="https://x.com/MuhammadAdilAh8" target="_blank">Twitter / X</a>
+        </div>
+      </aside>
+
+      <section class="content-panel">
+        <section id="about" role="tabpanel" aria-labelledby="tab-about">
+          <div class="prose-block">
+            <p>
+              Hello! I'm a 6th year PhD candidate in Public Policy (Economics
+              track) at Harvard University.
+            </p>
+            <p>
+              I work on topics in Development Economics and Political Economy.
+            </p>
+            <p>
+              I am on the academic job market in AY 2026-2027. My advisors are
+              Asim Khwaja, Eliana La Ferrara, and Augustin Bergeron.
+            </p>
+            <p>
+              You can reach me at
+              <a href="mailto:mahsan@g.harvard.edu">mahsan@g.harvard.edu</a>.
+            </p>
+          </div>
+        </section>
+
+        <section id="research" role="tabpanel" aria-labelledby="tab-research" hidden>
           <p class="subsection-label">Working papers</p>
 
           <div class="papers-list">
@@ -302,6 +334,56 @@
           </div>
         </section>
 
+        <section id="teaching" role="tabpanel" aria-labelledby="tab-teaching" hidden>
+          <p class="subsection-label">Harvard University</p>
+
+          <div class="course-list">
+            <article class="course-item">
+              <h3>Ec 10B: Principles of Macroeconomics</h3>
+              <p class="paper-meta">
+                for David Laibson and Jason Furman
+                <span class="course-terms">Spring &rsquo;24, &rsquo;25, &rsquo;26</span>
+              </p>
+            </article>
+
+            <article class="course-item">
+              <h3>Ec 10A: Principles of Microeconomics</h3>
+              <p class="paper-meta">
+                for David Laibson and Jason Furman
+                <span class="course-terms">Fall &rsquo;23, &rsquo;25</span>
+              </p>
+            </article>
+
+            <article class="course-item">
+              <h3>Ec 1010A: Microeconomic Theory</h3>
+              <p class="paper-meta">
+                for Maxim Boycko
+                <span class="course-terms">Fall &rsquo;24</span>
+              </p>
+            </article>
+          </div>
+
+          <p class="subsection-label course-group">Dartmouth College</p>
+
+          <div class="course-list">
+            <article class="course-item">
+              <h3>Econ 44: Topics in Development Economics</h3>
+              <p class="paper-meta">
+                for Eric Edmonds
+                <span class="course-terms">Winter &rsquo;19</span>
+              </p>
+            </article>
+
+            <article class="course-item">
+              <h3>Econ 49: Topics in International Economics</h3>
+              <p class="paper-meta">
+                for Nina Pavcnik
+                <span class="course-terms">Winter &rsquo;19</span>
+              </p>
+            </article>
+          </div>
+        </section>
+
         <section id="photos" role="tabpanel" aria-labelledby="tab-photos" hidden>
           <div class="prose-block">
             <p>Scenes from fieldwork in Punjab, Pakistan.</p>
@@ -365,17 +447,14 @@
         }
       }
 
-      function keepTabsInView() {
-        const bar = document.querySelector(".tabs");
-        if (bar && bar.getBoundingClientRect().top < 0) {
-          bar.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-      }
-
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           selectTab(tab);
-          keepTabsInView();
+          // The nav is sticky, so switching tabs mid-page would otherwise
+          // drop you into the middle of the new panel.
+          if (window.scrollY > 0) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
         });
         tab.addEventListener("keydown", (event) => {
           const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
