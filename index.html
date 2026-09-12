@@ -23,8 +23,6 @@
   <body>
     <header class="topbar">
       <div class="topbar-inner">
-        <h1 class="brand">Adil Ahsan</h1>
-
         <nav class="tabs" role="tablist" aria-label="Sections">
           <button
             class="tab"
@@ -91,6 +89,9 @@
           src="adilphotonew.jpg"
           alt="Portrait of Adil Ahsan"
         />
+
+        <h1 class="profile-name">Adil Ahsan</h1>
+        <p class="role">PhD Candidate<br />Harvard Kennedy School</p>
 
         <div class="actions">
           <a class="btn" href="cv.pdf" target="_blank" rel="noopener">CV</a>
@@ -435,25 +436,50 @@
                 Pakistan together with their oral and written histories.
               </p>
 
-              <a
-                class="site-preview"
-                href="https://raufnawaz.github.io/Sufi-Shrines/"
-                target="_blank"
-                rel="noopener"
-              >
-                <span class="site-preview-bar">
-                  <span class="site-preview-dots" aria-hidden="true">
-                    <i></i><i></i><i></i>
-                  </span>
-                  <span class="site-preview-url">raufnawaz.github.io/Sufi-Shrines</span>
-                </span>
-                <img
-                  src="previews/sufi-shrines.jpg"
-                  alt="Screenshot of the shrine map: markers across Pakistan on a dark basemap, with an &ldquo;Explore the Shrines&rdquo; panel on the left"
-                  loading="lazy"
-                />
-                <span class="site-preview-cta">Open the full map &rarr;</span>
-              </a>
+              <div class="stage" id="stage-shrines">
+                <div
+                  class="win"
+                  id="win-shrines"
+                  tabindex="0"
+                  role="group"
+                  aria-label="Shrine map window — drag the title bar to move it, or use the arrow keys"
+                  data-src="https://raufnawaz.github.io/Sufi-Shrines/"
+                >
+                  <div class="win-bar" data-drag>
+                    <span class="win-lights" aria-hidden="true">
+                      <i></i><i></i><i></i>
+                    </span>
+                    <span class="win-title">Mapping the Shrines of Pakistan</span>
+                    <a
+                      class="win-open"
+                      href="https://raufnawaz.github.io/Sufi-Shrines/"
+                      target="_blank"
+                      rel="noopener"
+                      >Open &#8599;</a
+                    >
+                  </div>
+
+                  <div class="win-body">
+                    <img
+                      class="win-poster"
+                      src="previews/sufi-shrines.jpg"
+                      alt="The shrine map: markers across Pakistan on a dark basemap, with an &ldquo;Explore the Shrines&rdquo; panel on the left"
+                    />
+                    <iframe
+                      class="win-frame"
+                      title="The Spiritual Landscape of Pakistan — interactive shrine map"
+                    ></iframe>
+                    <span class="win-status">Loading the map&hellip;</span>
+                  </div>
+
+                  <span class="win-grip" data-resize aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <p class="stage-hint">
+                Drag the title bar to move the window, or pull the bottom-right
+                corner to resize it.
+              </p>
             </article>
           </div>
         </section>
@@ -513,6 +539,156 @@
           if (abstract) abstract.hidden = isOpen;
         });
       });
+
+      /* ---- Draggable, resizable window ---------------------------------- */
+
+      function makeWindow(win) {
+        const stage = win.parentElement;
+        const bar = win.querySelector("[data-drag]");
+        const grip = win.querySelector("[data-resize]");
+        const frame = win.querySelector(".win-frame");
+
+        const MIN_W = 320;
+        const MIN_H = 240;
+        // Keeps a grabbable strip of the title bar on screen at all times.
+        const KEEP_VISIBLE = 64;
+
+        let x = 0;
+        let y = 0;
+
+        const floating = () => getComputedStyle(win).position === "absolute";
+
+        // Sits the window slightly in from the corner of its surface.
+        const INSET = 22;
+
+        function place(nextX, nextY) {
+          const maxX = stage.clientWidth - win.offsetWidth;
+          const maxY = stage.clientHeight - win.offsetHeight;
+          // Allowed to overhang left/right a little, never above the stage.
+          x = Math.min(Math.max(nextX, Math.min(maxX, 0) - KEEP_VISIBLE), Math.max(maxX + KEEP_VISIBLE, 0));
+          y = Math.min(Math.max(nextY, 0), Math.max(maxY, 0));
+          win.style.setProperty("--x", x + "px");
+          win.style.setProperty("--y", y + "px");
+        }
+
+        function growStage() {
+          const needed = y + win.offsetHeight + 8;
+          if (needed > stage.clientHeight) stage.style.minHeight = needed + "px";
+        }
+
+        function gesture(handle, kind, onMove) {
+          handle.addEventListener("pointerdown", (event) => {
+            if (!floating() || event.button !== 0) return;
+            if (event.target.closest("a, button")) return;
+            event.preventDefault();
+            // Capture keeps the gesture alive once the pointer leaves the
+            // handle; losing it is survivable, so never abort the drag.
+            try {
+              handle.setPointerCapture(event.pointerId);
+            } catch (error) {
+              /* no capture available — the gesture still tracks while over the handle */
+            }
+            win.classList.add(kind);
+            win.focus({ preventScroll: true });
+
+            const start = {
+              px: event.clientX,
+              py: event.clientY,
+              x,
+              y,
+              w: win.offsetWidth,
+              h: win.offsetHeight,
+            };
+
+            const move = (moveEvent) => {
+              onMove(moveEvent.clientX - start.px, moveEvent.clientY - start.py, start);
+            };
+            const end = () => {
+              handle.removeEventListener("pointermove", move);
+              win.classList.remove(kind);
+              growStage();
+            };
+
+            handle.addEventListener("pointermove", move);
+            handle.addEventListener("pointerup", end, { once: true });
+            handle.addEventListener("pointercancel", end, { once: true });
+          });
+        }
+
+        place(INSET, INSET);
+
+        gesture(bar, "is-dragging", (dx, dy, start) => place(start.x + dx, start.y + dy));
+
+        gesture(grip, "is-resizing", (dx, dy, start) => {
+          const maxW = stage.clientWidth - x;
+          win.style.width = Math.min(Math.max(start.w + dx, MIN_W), Math.max(maxW, MIN_W)) + "px";
+          win.style.height = Math.max(start.h + dy, MIN_H) + "px";
+          // Grow the desk first, or clamping would yank a newly taller
+          // window back up to the top edge.
+          growStage();
+          place(x, y);
+        });
+
+        win.addEventListener("keydown", (event) => {
+          if (!floating() || event.target !== win) return;
+          const step = event.shiftKey ? 40 : 12;
+          const moves = {
+            ArrowLeft: [-step, 0],
+            ArrowRight: [step, 0],
+            ArrowUp: [0, -step],
+            ArrowDown: [0, step],
+          };
+          const move = moves[event.key];
+          if (!move) return;
+          event.preventDefault();
+          place(x + move[0], y + move[1]);
+          growStage();
+        });
+
+        // Load the map only once its panel is actually on screen, so the
+        // heavy embed never delays the rest of the page.
+        let started = false;
+        let reveal = null;
+
+        function goLive() {
+          clearTimeout(reveal);
+          win.classList.add("is-live");
+        }
+
+        function start() {
+          if (started || !win.isConnected || win.offsetParent === null) return;
+          started = true;
+          frame.addEventListener(
+            "load",
+            () => {
+              // The document is ready long before the map has drawn itself,
+              // so hold the poster a little longer rather than fading up to
+              // an empty canvas.
+              win.classList.add("is-ready");
+              reveal = setTimeout(goLive, 6000);
+            },
+            { once: true }
+          );
+          // Anyone who clicks wants the real thing now, ready or not.
+          win.querySelector(".win-body").addEventListener("pointerdown", goLive, { once: true });
+          frame.src = win.dataset.src;
+        }
+
+        const panel = win.closest("[role='tabpanel']");
+        if (panel) {
+          new MutationObserver(start).observe(panel, {
+            attributes: true,
+            attributeFilter: ["hidden"],
+          });
+        }
+        start();
+
+        window.addEventListener("resize", () => {
+          if (floating()) place(x, y);
+        });
+      }
+
+      document.querySelectorAll(".win").forEach(makeWindow);
     </script>
 
     <!-- Cloudflare Web Analytics -->

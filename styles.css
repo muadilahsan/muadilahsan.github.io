@@ -1,16 +1,19 @@
 :root {
-  --bg: #f7f9fc;
-  --text: #16202f;
-  --body-copy: #3e4a5c;
-  --muted: #6d7890;
-  --line: rgba(22, 32, 47, 0.12);
-  --line-strong: rgba(22, 32, 47, 0.2);
-  --accent: #2f6fb5;
-  --accent-soft: rgba(47, 111, 181, 0.09);
-  --jmp: #c0392b;
+  --paper: #fcfbf7;
+  --ink: #191814;
+  --body: #3c3a34;
+  --muted: #79736a;
+  --rule: rgba(25, 24, 20, 0.14);
+  --rule-soft: rgba(25, 24, 20, 0.08);
+  --blue: #22598f;
+  --blue-deep: #16406a;
+  --blue-wash: rgba(34, 89, 143, 0.08);
+  --red: #a8302a;
 
   --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: min(1080px, 90vw);
 }
 
 * {
@@ -25,190 +28,197 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--sans);
-  font-size: 16px;
-  color: var(--body-copy);
-  background: var(--bg);
+  font-family: var(--serif);
+  font-size: 1.09rem;
+  line-height: 1.66;
+  color: var(--body);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--accent);
+  color: var(--blue);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 
 a:hover {
-  text-decoration-thickness: 2px;
+  color: var(--blue-deep);
 }
 
-/* ---------- Top bar ---------- */
+/* Small letterspaced sans — used for nav, section labels, and UI chrome. */
+.eyebrow,
+.subsection-label,
+.tab,
+.role,
+.btn,
+.paper-actions,
+.paper-meta,
+.course-terms,
+.photo-card figcaption,
+.window-chrome {
+  font-family: var(--sans);
+}
+
+/* ---------- Masthead nav ---------- */
 
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
+  z-index: 20;
+  background: var(--paper);
 }
 
 .topbar-inner {
-  width: min(1080px, 92vw);
+  width: var(--gutter);
   margin: 0 auto;
-  min-height: 68px;
+  min-height: 72px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem 2rem;
-  flex-wrap: wrap;
-  padding: 0.7rem 0;
-}
-
-.brand {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  font-weight: 500;
-  letter-spacing: 0.005em;
-  color: var(--text);
-  white-space: nowrap;
+  justify-content: flex-end;
+  padding: 1rem 0 0.9rem;
 }
 
 .tabs {
   display: flex;
-  align-items: center;
-  gap: 1.75rem;
+  align-items: baseline;
+  gap: 1.9rem;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .tab {
   border: none;
   background: transparent;
   color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.92rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  padding: 0.3rem 0;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 0;
   cursor: pointer;
   white-space: nowrap;
-  position: relative;
   transition: color 160ms ease;
-}
-
-.tab::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.1rem;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 180ms ease;
 }
 
 .tab:hover,
 .tab:focus-visible {
-  color: var(--text);
+  color: var(--ink);
 }
 
 .tab[aria-selected="true"] {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.tab[aria-selected="true"]::after {
-  transform: scaleX(1);
+  color: var(--blue);
+  font-weight: 700;
 }
 
 /* ---------- Layout ---------- */
 
 .layout {
-  width: min(1080px, 92vw);
-  margin: 3.5rem auto 5rem;
+  width: var(--gutter);
+  margin: 1.6rem auto 5.5rem;
   display: grid;
-  grid-template-columns: 268px 1fr;
-  gap: 3.5rem;
+  grid-template-columns: 248px 1fr;
+  gap: 4rem;
   align-items: start;
 }
 
 .profile-panel {
   position: sticky;
-  top: 6.5rem;
+  top: 6rem;
+  text-align: center;
 }
 
 .profile-photo {
   width: 100%;
   display: block;
   aspect-ratio: 4 / 5;
-  border-radius: 3px;
   object-fit: cover;
-  object-position: center 18%;
-  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.1), 0 8px 24px rgba(22, 32, 47, 0.08);
+  object-position: center 16%;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.profile-name {
+  margin: 1.05rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.62rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+}
+
+.role {
+  margin: 0.45rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .actions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 0.4rem;
-  margin-top: 1rem;
+  margin-top: 1.15rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule-soft);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   text-decoration: none;
-  padding: 0.4rem 0.4rem;
-  border-radius: 8px;
-  border: 1px solid rgba(47, 111, 181, 0.28);
-  color: var(--accent);
-  background: var(--accent-soft);
-  font-size: 0.8rem;
-  font-weight: 500;
-  line-height: 1.25;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
   transition:
-    background-color 160ms ease,
+    color 160ms ease,
     border-color 160ms ease,
-    color 160ms ease;
+    background-color 160ms ease;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  color: #ffffff;
-  border-color: var(--accent);
-  background: var(--accent);
+  color: var(--blue);
+  border-color: var(--blue);
+  background: var(--blue-wash);
 }
 
-/* ---------- Shared content styles ---------- */
-
 .content-panel {
-  /* Pulls the first line's cap height up to the top edge of the photo;
-     text boxes sit lower than their glyphs by roughly half the leading. */
-  margin-top: -0.45rem;
+  /* Lifts the first line's cap height level with the top of the photo. */
+  margin-top: -0.4rem;
   min-width: 0;
 }
 
+/* ---------- Shared ---------- */
+
 .subsection-label {
-  margin: 0 0 1.1rem;
-  font-size: 0.72rem;
+  margin: 0 0 1.15rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .prose-block {
   display: grid;
-  gap: 1.1rem;
-  max-width: 62ch;
+  gap: 1.05rem;
+  max-width: 58ch;
 }
 
 .prose-block p {
   margin: 0;
-  line-height: 1.75;
-  font-size: 1.02rem;
 }
 
 /* ---------- Research ---------- */
@@ -218,8 +228,8 @@ a:hover {
 }
 
 .paper-item {
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--line);
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--rule-soft);
   animation: rise 320ms ease both;
 }
 
@@ -231,170 +241,82 @@ a:hover {
 .paper-item h3 {
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.32rem;
+  font-size: 1.34rem;
   font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: 0.002em;
-  color: var(--text);
+  line-height: 1.28;
+  color: var(--ink);
 }
 
 .paper-meta {
   margin: 0.3rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.83rem;
+  letter-spacing: 0.01em;
 }
 
 .jmp-tag {
-  color: var(--jmp);
+  color: var(--red);
   font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
 }
 
+/* Actions read as a run of linked words divided by hairlines, the way a
+   journal lists its formats — not as buttons. */
 .paper-actions {
   display: flex;
-  gap: 0.4rem;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
 }
 
 .paper-actions a,
 .abstract-btn {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(47, 111, 181, 0.28);
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 0.8rem;
-  border-radius: 999px;
-  padding: 0.24rem 0.7rem;
-  line-height: 1.45;
+  display: inline-block;
+  border: none;
+  background: none;
+  padding: 0 0.7rem;
+  margin: 0.1rem 0;
+  font: inherit;
+  color: var(--blue);
   cursor: pointer;
   text-decoration: none;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
+  border-left: 1px solid var(--rule);
+  transition: color 160ms ease;
+}
+
+.paper-actions > *:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
 .paper-actions a:hover,
 .paper-actions a:focus-visible,
 .abstract-btn:hover,
 .abstract-btn:focus-visible {
-  color: #ffffff;
-  border-color: var(--accent);
-  background: var(--accent);
+  color: var(--blue-deep);
+  text-decoration: underline;
 }
 
-.abstract-btn[aria-expanded="true"],
-.abstract-btn[aria-expanded="true"]:hover {
-  color: #ffffff;
-  background: var(--accent);
-  border-color: var(--accent);
+.abstract-btn[aria-expanded="true"] {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .abstract-text {
   margin: 1rem 0 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--line);
-  font-size: 0.97rem;
-  line-height: 1.72;
-  max-width: 66ch;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--rule);
+  max-width: 64ch;
+  font-size: 1.04rem;
+  line-height: 1.68;
 }
 
 .wip-block {
-  margin-top: 2.75rem;
+  margin-top: 3rem;
 }
-
-.project-item h3 a {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.project-item h3 a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.project-item .abstract-text {
-  padding-left: 0;
-  border-left: none;
-  margin-top: 0.55rem;
-}
-
-/* Preview of a linked site, framed like a small browser window. */
-.site-preview {
-  display: block;
-  position: relative;
-  margin: 1.25rem 0 0;
-  max-width: 620px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #ffffff;
-  text-decoration: none;
-  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.08), 0 10px 28px rgba(22, 32, 47, 0.09);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.site-preview:hover,
-.site-preview:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.08), 0 14px 34px rgba(22, 32, 47, 0.16);
-}
-
-.site-preview img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.site-preview-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0.75rem;
-  background: #eef1f6;
-  border-bottom: 1px solid var(--line);
-}
-
-.site-preview-cta {
-  display: block;
-  padding: 0.55rem 0.75rem;
-  border-top: 1px solid var(--line);
-  background: #ffffff;
-  color: var(--accent);
-  font-size: 0.82rem;
-  font-weight: 500;
-}
-
-.site-preview-dots {
-  display: inline-flex;
-  gap: 0.3rem;
-  flex: none;
-}
-
-.site-preview-dots i {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: rgba(22, 32, 47, 0.18);
-}
-
-.site-preview-url {
-  font-size: 0.76rem;
-  color: var(--muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 
 /* ---------- Teaching ---------- */
 
@@ -403,8 +325,8 @@ a:hover {
 }
 
 .course-item {
-  padding: 0.95rem 0;
-  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule-soft);
   animation: rise 320ms ease both;
 }
 
@@ -416,10 +338,10 @@ a:hover {
 .course-item h3 {
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.18rem;
+  font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.3;
-  color: var(--text);
+  color: var(--ink);
 }
 
 .course-terms {
@@ -428,12 +350,288 @@ a:hover {
 }
 
 .course-terms::before {
-  content: "\00b7";
-  margin: 0 0.45rem;
+  content: "\2002\00b7\2002";
 }
 
 .course-group {
-  margin-top: 2.75rem;
+  margin-top: 3rem;
+}
+
+/* ---------- Personal projects ---------- */
+
+.project-item h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-item h3 a:hover {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.project-item .abstract-text {
+  padding-left: 0;
+  border-left: none;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Draggable window ---------- */
+
+/* A desk for the window to sit on, so it reads as something you can move
+   rather than a picture pinned to the page. */
+.stage {
+  position: relative;
+  margin-top: 1.5rem;
+  min-height: 580px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  background-color: rgba(25, 24, 20, 0.016);
+  background-image: radial-gradient(rgba(25, 24, 20, 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: 11px 11px;
+}
+
+.win {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 620px;
+  height: 400px;
+  transform: translate3d(var(--x, 0px), var(--y, 0px), 0);
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(25, 24, 20, 0.2);
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 1px rgba(25, 24, 20, 0.07),
+    0 12px 26px rgba(25, 24, 20, 0.12),
+    0 34px 70px rgba(25, 24, 20, 0.13);
+  transition: box-shadow 200ms ease;
+}
+
+.win:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.win.is-dragging,
+.win.is-resizing {
+  box-shadow:
+    0 1px 1px rgba(25, 24, 20, 0.07),
+    0 20px 38px rgba(25, 24, 20, 0.18),
+    0 48px 96px rgba(25, 24, 20, 0.18);
+}
+
+/* The frame swallows pointer events, so it is switched off mid-gesture. */
+.win.is-dragging .win-frame,
+.win.is-resizing .win-frame {
+  pointer-events: none;
+}
+
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: none;
+  height: 38px;
+  padding: 0 0.7rem;
+  background: linear-gradient(#fbfbfa, #eeedea);
+  border-bottom: 1px solid rgba(25, 24, 20, 0.14);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.win.is-dragging .win-bar {
+  cursor: grabbing;
+}
+
+.win-lights {
+  display: flex;
+  gap: 0.4rem;
+  flex: none;
+}
+
+.win-lights i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #d6d3cd;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+}
+
+.win-lights i:nth-child(1) {
+  background: #ec6a5e;
+}
+.win-lights i:nth-child(2) {
+  background: #f3bf4f;
+}
+.win-lights i:nth-child(3) {
+  background: #61c454;
+}
+
+.win-title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #5c5851;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win-open {
+  flex: none;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 0.2rem 0.35rem;
+  border-radius: 3px;
+}
+
+.win-open:hover,
+.win-open:focus-visible {
+  background: var(--blue-wash);
+}
+
+.win-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #17171a;
+}
+
+/* The poster sits permanently behind the frame. While the map loads it is
+   what you see, and if the embed is ever blocked it stays the fallback
+   rather than leaving an empty rectangle. */
+.win-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.win-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0;
+  /* Invisible but still on top, so it must not eat clicks meant for the
+     poster underneath until it is actually showing. */
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+
+.win.is-live .win-frame {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Appears only once the embed has loaded and before you step into it. */
+.win-body::after {
+  content: "Click to explore";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #f3f2ef;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.win.is-ready .win-body::after {
+  opacity: 1;
+}
+
+.win.is-live .win-body::after {
+  opacity: 0;
+}
+
+.win-status {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #f3f2ef;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: opacity 300ms ease;
+}
+
+.win.is-ready .win-status,
+.win.is-live .win-status {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.win-status::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  animation: spin 720ms linear infinite;
+}
+
+.win-grip {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  touch-action: none;
+  z-index: 2;
+}
+
+.win-grip::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid rgba(25, 24, 20, 0.3);
+  border-bottom: 2px solid rgba(25, 24, 20, 0.3);
+  border-bottom-right-radius: 3px;
+}
+
+.stage-hint {
+  margin: 0.85rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--muted);
 }
 
 /* ---------- Field photos ---------- */
@@ -442,7 +640,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   align-items: start;
-  gap: 1.75rem 1.25rem;
+  gap: 2rem 1.35rem;
   margin-top: 2rem;
 }
 
@@ -455,20 +653,19 @@ a:hover {
   grid-column: 1 / -1;
 }
 
-/* Photos are shown whole — never cropped to a fixed ratio, so nobody
-   gets cut out of frame. */
+/* Photos are shown whole — never cropped to a fixed ratio. */
 .photo-card img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(22, 32, 47, 0.1), 0 8px 24px rgba(22, 32, 47, 0.08);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
 }
 
 .photo-card figcaption {
-  margin-top: 0.7rem;
+  margin-top: 0.65rem;
   color: var(--muted);
-  font-size: 0.87rem;
+  font-size: 0.8rem;
   line-height: 1.5;
 }
 
@@ -477,10 +674,15 @@ a:hover {
     opacity: 0;
     transform: translateY(6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -489,7 +691,8 @@ a:hover {
     scroll-behavior: auto;
   }
 
-  * {
+  *,
+  *::before {
     animation: none !important;
     transition: none !important;
   }
@@ -500,48 +703,75 @@ a:hover {
 @media (max-width: 900px) {
   .topbar-inner {
     justify-content: flex-start;
-    gap: 0.2rem 1.4rem;
+    padding: 0.9rem 0 0.8rem;
   }
 
   .tabs {
-    gap: 1.35rem;
+    justify-content: flex-start;
+    gap: 1.3rem;
   }
 
   .layout {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
-    margin: 2.5rem auto 3.5rem;
+    gap: 2.4rem;
+    margin: 1.4rem auto 3.5rem;
   }
 
   .profile-panel {
     position: static;
-    width: 220px;
+    width: 210px;
+    text-align: left;
   }
 
-  .profile-photo {
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .content-panel {
+    margin-top: 0;
+  }
+
+  /* Below this width the window is a fixed panel: no room to drag. */
+  .stage {
+    min-height: 0;
+  }
+
+  .win {
+    position: static;
     width: 100%;
+    height: 380px;
+    transform: none;
+  }
+
+  .win-bar {
+    cursor: default;
+  }
+
+  .win-grip,
+  .stage-hint {
+    display: none;
   }
 }
 
 @media (max-width: 560px) {
-  .brand {
-    font-size: 1.45rem;
-  }
-
   .tabs {
-    gap: 1.1rem;
+    gap: 1rem;
   }
 
   .tab {
-    font-size: 0.87rem;
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
   }
 
   .profile-panel {
-    width: 190px;
+    width: 175px;
   }
 
   .paper-item h3 {
     font-size: 1.2rem;
   }
 
+  .win {
+    height: 320px;
+  }
 }
