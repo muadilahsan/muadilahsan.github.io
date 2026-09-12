@@ -395,28 +395,17 @@
 
           <!--
             To add a photo: drop the file in photos/ and copy one <figure>
-            block below, changing src, alt, and the caption. Order here is
-            the order it appears in; the counter updates itself.
+            block below, changing src and alt. Order here is the order it
+            appears in; the counter updates itself.
           -->
           <div class="carousel" id="field-photos">
-            <div class="carousel-frame">
-              <button
-                class="carousel-nav prev"
-                type="button"
-                data-step="-1"
-                aria-label="Previous photo"
-              >
-                <span aria-hidden="true">&#8249;</span>
-              </button>
-
-              <div class="carousel-viewport">
-                <div class="carousel-track">
+            <div class="carousel-viewport">
+              <div class="carousel-track">
                 <figure class="slide">
                   <img
                     src="photos/fieldphoto1.jpg"
                     alt="Adil Ahsan standing and speaking to a group of imams seated on sofas, a projector on the table in front of them"
                   />
-                  <figcaption>Presenting to imams at a training session</figcaption>
                 </figure>
 
                 <figure class="slide">
@@ -425,7 +414,6 @@
                     alt="Nine members of the field team standing together on the steps of a building, several wearing lanyards"
                     loading="lazy"
                   />
-                  <figcaption>The field team</figcaption>
                 </figure>
 
                 <figure class="slide">
@@ -434,13 +422,22 @@
                     alt="A large congregation seated under an awning outside a mosque faced in turquoise tilework"
                     loading="lazy"
                   />
-                  <figcaption>Friday prayers at a mosque in Punjab</figcaption>
                 </figure>
-                </div>
               </div>
+            </div>
 
+            <div class="carousel-controls">
               <button
-                class="carousel-nav next"
+                class="carousel-nav"
+                type="button"
+                data-step="-1"
+                aria-label="Previous photo"
+              >
+                <span aria-hidden="true">&#8249;</span>
+              </button>
+              <p class="carousel-count" aria-live="polite"></p>
+              <button
+                class="carousel-nav"
                 type="button"
                 data-step="1"
                 aria-label="Next photo"
@@ -448,8 +445,6 @@
                 <span aria-hidden="true">&#8250;</span>
               </button>
             </div>
-
-            <p class="carousel-count" aria-live="polite"></p>
           </div>
         </section>
 

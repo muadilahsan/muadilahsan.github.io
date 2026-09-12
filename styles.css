@@ -55,7 +55,6 @@ a:hover {
 .paper-actions,
 .paper-meta,
 .course-terms,
-.slide figcaption,
 .carousel-count {
   font-family: var(--sans);
 }
@@ -381,30 +380,15 @@ a:hover {
 /* ---------- Field photo carousel ---------- */
 
 .carousel {
-  margin-top: 1.75rem;
-  max-width: 680px;
+  margin-top: 1.6rem;
 }
 
-.carousel-frame {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* A fixed-size window: every photo gets the same stage regardless of its
-   own proportions, so nothing jumps as you page through. */
-/* The viewport is the fixed window and does the clipping; the track slides
-   inside it. Clipping and transforming the same element would carry the
-   window off screen along with the photos. */
+/* No frame, no fill: the photo sits on the page like any other image, and
+   the letterboxing either side simply reads as margin. */
 .carousel-viewport {
   width: 100%;
-  /* Sized so the image area lands near 4:3, the shape of most of these
-     photos — anything squarer or wider simply letterboxes. */
-  height: 552px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  background: #121a24;
 }
 
 .carousel-track {
@@ -416,82 +400,51 @@ a:hover {
 
 .slide {
   flex: 0 0 100%;
-  display: flex;
-  flex-direction: column;
   min-width: 0;
+  height: 100%;
   margin: 0;
 }
 
 .slide img {
-  flex: 1;
-  min-height: 0;
   width: 100%;
+  height: 100%;
   /* Contain, not cover — a photo is never cropped to fit the window. */
   object-fit: contain;
   display: block;
 }
 
-.slide figcaption {
-  flex: none;
-  padding: 0.65rem 0.95rem;
-  background: #0d141c;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  color: #ccd5e0;
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  line-height: 1.45;
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 0.75rem;
 }
 
 .carousel-nav {
-  position: absolute;
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--rule);
-  border-radius: 50%;
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 1.5rem;
+  border: none;
+  background: none;
+  padding: 0.1rem 0.5rem;
+  color: var(--muted);
+  font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(22, 32, 47, 0.16);
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
-}
-
-.carousel-nav span {
-  /* Optical centring: the chevron glyphs sit low in their box. */
-  margin-top: -3px;
-}
-
-.carousel-nav.prev {
-  left: -20px;
-}
-
-.carousel-nav.next {
-  right: -20px;
+  transition: color 160ms ease;
 }
 
 .carousel-nav:hover,
 .carousel-nav:focus-visible {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #ffffff;
+  color: var(--blue);
 }
 
 .carousel-count {
-  margin: 0.7rem 0 0;
-  font-family: var(--sans);
-  font-size: 0.76rem;
-  letter-spacing: 0.06em;
-  color: var(--muted);
+  margin: 0;
+  min-width: 3.5rem;
   text-align: center;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
 }
-
 
 @keyframes rise {
   from {
@@ -556,16 +509,7 @@ a:hover {
   }
 
   .carousel-viewport {
-    height: 420px;
-  }
-
-  /* No room to hang the buttons outside the frame at this width. */
-  .carousel-nav.prev {
-    left: 8px;
-  }
-
-  .carousel-nav.next {
-    right: 8px;
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -588,6 +532,6 @@ a:hover {
   }
 
   .carousel-viewport {
-    height: 330px;
+    aspect-ratio: 4 / 3;
   }
 }
