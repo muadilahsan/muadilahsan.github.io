@@ -182,6 +182,8 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  /* "Twitter / X" would otherwise break across two lines in its own box. */
+  white-space: nowrap;
   transition:
     color 160ms ease,
     border-color 160ms ease,
@@ -504,10 +506,38 @@ a:hover {
     margin: 1.4rem auto 3.5rem;
   }
 
+  /* The panel fills the column so the role line and buttons have room;
+     only the photo itself is held to a portrait size. */
   .profile-panel {
     position: static;
-    width: 210px;
+    width: auto;
     text-align: left;
+  }
+
+  .profile-photo {
+    width: 230px;
+  }
+
+  /* Dividers read as stray marks once this row wraps, which it does at
+     this width, so spacing carries the separation instead. */
+  .paper-actions {
+    gap: 0.2rem 1.15rem;
+  }
+
+  .paper-actions a,
+  .abstract-btn {
+    padding: 0;
+    border-left: none;
+  }
+
+  /* The term list drops to its own line here, where a leading middot
+     reads as a stray mark rather than a separator. */
+  .course-terms {
+    display: block;
+  }
+
+  .course-terms::before {
+    content: none;
   }
 
   .actions {
@@ -536,8 +566,8 @@ a:hover {
     letter-spacing: 0.1em;
   }
 
-  .profile-panel {
-    width: 175px;
+  .profile-photo {
+    width: 205px;
   }
 
   .paper-item h3 {
