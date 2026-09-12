@@ -14,6 +14,7 @@
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
 
   --gutter: min(1080px, 90vw);
+  --photo-w: 248px;
 }
 
 * {
@@ -116,19 +117,21 @@ a:hover {
   width: var(--gutter);
   margin: 1.6rem auto 5.5rem;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: var(--photo-w) 1fr;
   gap: 4rem;
   align-items: start;
 }
 
-/* About is the one short panel, so it reads better centred against the
-   photo than stranded at the top of the column. Every other tab runs long
-   and stays top-aligned. */
-.layout:has(#about:not([hidden])) {
-  align-items: center;
-}
-
+/* About is the one short panel, so its text is centred on the portrait
+   rather than stranded at the top of the column. Reserving exactly the
+   photo's height and centring within it lines the text up with the
+   picture itself, not with the name and buttons below it. Every other tab
+   runs long and stays top-aligned. */
 .layout:has(#about:not([hidden])) .content-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(var(--photo-w) * 5 / 4);
   margin-top: 0;
 }
 
@@ -507,8 +510,13 @@ a:hover {
 
   .profile-panel {
     position: static;
-    width: 250px;
+    width: 210px;
     text-align: left;
+  }
+
+  .layout:has(#about:not([hidden])) .content-panel {
+    display: block;
+    min-height: 0;
   }
 
   .actions {
@@ -535,7 +543,7 @@ a:hover {
   }
 
   .profile-panel {
-    width: 210px;
+    width: 175px;
   }
 
   .paper-item h3 {
