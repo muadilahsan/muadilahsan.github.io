@@ -391,6 +391,10 @@ a:hover {
 }
 
 /* ---------- Field photo carousel ---------- */
+/* The frame has no border or fill of its own, so its ratio only decides
+   how large the photo is drawn. Matching it to the photos' own 4:3 lets
+   each one fill the column edge to edge instead of sitting inset inside
+   a wider frame. */
 
 .carousel {
   margin-top: 1.6rem;
@@ -400,7 +404,7 @@ a:hover {
    the letterboxing either side simply reads as margin. */
 .carousel-viewport {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
@@ -553,9 +557,6 @@ a:hover {
     min-height: 0;
   }
 
-  .carousel-viewport {
-    aspect-ratio: 4 / 3;
-  }
 }
 
 @media (max-width: 560px) {
@@ -576,7 +577,4 @@ a:hover {
     font-size: 1.2rem;
   }
 
-  .carousel-viewport {
-    aspect-ratio: 4 / 3;
-  }
 }
