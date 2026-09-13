@@ -1,5 +1,5 @@
 :root {
-  --paper: #f4f8fc;
+  --paper: #f3f7fc;
   --ink: #16202f;
   --body: #3e4a5c;
   --muted: #6d7890;
@@ -34,7 +34,26 @@ body {
   line-height: 1.66;
   color: var(--body);
   background: var(--paper);
+  position: relative;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+
+/* The blue ground, as a layer pinned to the viewport so it stays put while
+   the page scrolls. Masked away under the nav strip and faded in below it,
+   so the nav's flat --paper meets it without a step. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 88% 58%, rgba(52, 120, 246, 0.17), transparent 40%),
+    radial-gradient(circle at 4% 94%, rgba(103, 159, 255, 0.16), transparent 34%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 76px, #000 230px);
+  mask-image: linear-gradient(to bottom, transparent 76px, #000 230px);
 }
 
 a {
@@ -68,6 +87,7 @@ a:hover {
   z-index: 20;
   background: var(--paper);
 }
+
 
 .topbar-inner {
   width: var(--gutter);
