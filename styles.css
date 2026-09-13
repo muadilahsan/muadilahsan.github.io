@@ -391,8 +391,9 @@ a:hover {
 }
 
 /* ---------- Field photo carousel ---------- */
-/* A wide cinematic frame. The photos are 4:3, so filling a 16:9 band
-   means cropping about a quarter of their height — see .slide img. */
+/* The frame matches the photos' own ~5:3 crop, and they are contained
+   rather than covered, so what is shown is exactly how they were cropped
+   — nothing is trimmed here. */
 
 .carousel {
   margin-top: 1.6rem;
@@ -402,7 +403,7 @@ a:hover {
    the letterboxing either side simply reads as margin. */
 .carousel-viewport {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 3;
   overflow: hidden;
 }
 
@@ -423,17 +424,9 @@ a:hover {
 .slide img {
   width: 100%;
   height: 100%;
-  /* Cover, so each photo fills the wide frame edge to edge. The band
-     taken is the middle of the image by default; add class="focus-top"
-     to a photo whose subject sits high in the frame and would lose its
-     top to a centred crop. */
-  object-fit: cover;
-  object-position: center center;
+  /* Contain, so a photo is shown whole as supplied. */
+  object-fit: contain;
   display: block;
-}
-
-.slide img.focus-top {
-  object-position: center top;
 }
 
 .carousel-controls {
@@ -530,11 +523,6 @@ a:hover {
     margin-inline: auto;
   }
 
-  /* 16:9 leaves only a sliver of height on a phone, so the band opens up
-     a little here while staying landscape. */
-  .carousel-viewport {
-    aspect-ratio: 3 / 2;
-  }
 
   /* Dividers read as stray marks once this row wraps, which it does at
      this width, so spacing carries the separation instead. */
