@@ -505,6 +505,19 @@
     <script>
       const tabs = Array.from(document.querySelectorAll(".tab"));
 
+      // Every panel lives at the same URL, so GA4 would otherwise log one
+      // pageview per visit no matter how much someone reads. Sending a
+      // virtual pageview per section makes them show up as separate rows in
+      // the standard Pages report.
+      function trackSection(tab) {
+        if (typeof gtag !== "function") return;
+        const id = tab.getAttribute("aria-controls");
+        gtag("event", "page_view", {
+          page_title: tab.textContent.trim(),
+          page_location: window.location.origin + "/" + id,
+        });
+      }
+
       function selectTab(tab, { focus = false, updateHash = true } = {}) {
         tabs.forEach((other) => {
           const selected = other === tab;
@@ -517,6 +530,7 @@
         if (updateHash) {
           history.replaceState(null, "", "#" + tab.getAttribute("aria-controls"));
         }
+        trackSection(tab);
       }
 
       tabs.forEach((tab) => {
@@ -545,6 +559,10 @@
         // The hash matches a panel id, so the browser jumps to it on load.
         // Deep links should still open at the top of the page.
         window.scrollTo(0, 0);
+      } else {
+        // No hash, so the markup's default tab is showing and selectTab never
+        // ran. Count that view too, or the landing section reads as zero.
+        trackSection(tabs.find((tab) => tab.getAttribute("aria-selected") === "true"));
       }
 
       document.querySelectorAll(".abstract-btn").forEach((button) => {
@@ -553,6 +571,12 @@
           const isOpen = button.getAttribute("aria-expanded") === "true";
           button.setAttribute("aria-expanded", String(!isOpen));
           if (abstract) abstract.hidden = isOpen;
+
+          // Only the opens are interesting; collapsing says nothing.
+          const title = button.closest(".paper-item")?.querySelector("h3");
+          if (!isOpen && typeof gtag === "function" && title) {
+            gtag("event", "view_abstract", { paper: title.textContent.trim() });
+          }
         });
       });
 
