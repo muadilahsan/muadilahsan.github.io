@@ -203,7 +203,7 @@ a:hover {
   font-weight: 600;
   line-height: 1.25;
   min-height: 44px;
-  /* "Twitter / X" would otherwise break across two lines in its own box. */
+  /* Keep button labels on one line in their own box. */
   white-space: nowrap;
   transition:
     transform 180ms ease,
