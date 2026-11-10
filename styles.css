@@ -291,6 +291,11 @@ a:hover {
   color: var(--ink);
 }
 
+/* Consecutive award lines sit close together under a paper title. */
+.award-tag + .award-tag {
+  margin-top: 0.05rem;
+}
+
 .jmp-tag {
   color: var(--red);
   font-weight: 600;
