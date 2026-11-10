@@ -287,13 +287,15 @@ a:hover {
 }
 
 .award-tag {
-  font-weight: 700;
+  font-style: italic;
+  font-weight: 400;
   color: var(--ink);
+  line-height: 1.3;
 }
 
-/* Consecutive award lines sit close together under a paper title. */
+/* Consecutive award lines stack with no extra gap, as on the CV. */
 .award-tag + .award-tag {
-  margin-top: 0.05rem;
+  margin-top: 0;
 }
 
 .jmp-tag {
